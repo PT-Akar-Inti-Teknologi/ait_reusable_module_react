@@ -1,18 +1,19 @@
-FROM node:18.18.0-alpine
+FROM node:20.0.0-alpine
+
+RUN apk update
 
 WORKDIR /app
 
+EXPOSE 3000
 
-COPY package.json yarn.lock ./
+COPY package.json .
 
 RUN yarn install
 
+# COPY package* ./
+RUN yarn autoclean 
+
 COPY . .
 
-RUN npx tailwindcss-cli@latest build -o ./public/styles.css
-
 ENV NODE_ENV=development
-
-EXPOSE 3000
-
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
