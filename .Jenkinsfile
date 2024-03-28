@@ -8,7 +8,7 @@ pipeline {
       SERVICE_TARGET_PORT = 3000
       NAMESPACE = "ait-pro-web"
       PATH = newPath(env)
-      ALLOWED_BRANCH = "development"
+      ALLOWED_BRANCH = "dev"
       RUN_SNYK= sh script: "git log -1 | grep -E -- '--run-snyk'", returnStatus: true
       RUN_SONAR= sh script: "git log -1 | grep -E -- '--run-sonar'", returnStatus: true
       RUN_BUILD= sh script: "git log -1 | grep -E -- '--run-build'", returnStatus: true
