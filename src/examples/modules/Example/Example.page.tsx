@@ -2,7 +2,7 @@ import {
   InputSearch,
   Paging,
   Table
-} from "../lib/components/query-params";
+} from "@ait_reusable_table_react/query-params";
 import {
   ActionButton,
   Content,
@@ -13,12 +13,12 @@ import {
   TableHead,
   TableRow,
   ToggleDarkMode
-} from "../lib/components";
+} from "@ait_reusable_table_react";
 import {
   Wrapper
-} from "./components";
+} from "../../components";
 
-export default function TableExample() {
+export function ExamplePage() {
 
   const renderTableItem = (_: any, index: number) => {
     return (
