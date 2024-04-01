@@ -1,39 +1,39 @@
-# AIT React Table
+# AIT Reusable Table React
 
 A fully-fledged Table module created for React apps. Provides table component, search field, paging mode and more!
 
 # Overview
 * [Introduction](#introduction)
 * [Installation](#installation)
-  * [Install The Module](#install-module)
-  * [System Requirement](#system-requirement)
+  * [Install The Module](#installmodule)
+  * [System Requirement](#systemrequirement)
 * [Components](#components)
   * [Table](#table)
-  * [TableRow](#table-row)
-  * [TableHead](#table-head)
-  * [TableBody](#table-body)
-  * [TableCell](#table-cell)
+  * [TableRow](#tablerow)
+  * [TableHead](#tablehead)
+  * [TableBody](#tablebody)
+  * [TableCell](#tablecell)
   * [Paging](#paging)
-  * [InputSearch](#input-search)
+  * [InputSearch](#inputsearch)
 * [Developers](#developers)
 
-<h1 id="introduction">Introduction</h1>
+# Introduction
 
 **AIT Reusable Table React** provide You to use components that adapted to AIT standards. Its fully customizeable, realabel, integrated with Tailwind CSS.
 
-<h1 id="installation">Installation</h1>
+# Installation
 
-#### Install The Module
+## Install The Module
 
 ```bash
-npm install git+https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react
+yarn add PT-Akar-Inti-Teknologi/ait_reusable_table_react
 ```
 
-#### Install Tailwind CSS
+## Install Tailwind CSS
 
 This project uses Tailwind CSS for UI Framework. [You can refer this link to install Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
 
-#### System Requirements
+## System Requirements
 
 
 | Module | Version |
@@ -42,6 +42,7 @@ This project uses Tailwind CSS for UI Framework. [You can refer this link to ins
 | React | ^18.2.0 |
 | Tailwind CSS | ^3.4.1 |
 
+---
 
 # Components
 
@@ -60,6 +61,8 @@ import { Table } from '@ait_reusable_table_react'
 
 *All common `table` props can be apply to this component*
 
+---
+
 ## TableRow
 
 ```tsx
@@ -67,6 +70,8 @@ import { TableRow } from '@ait_reusable_table_react'
 ```
 
 *All common `tr` props can be apply to this component*
+
+---
 
 ## TableHead
 
@@ -76,6 +81,8 @@ import { TableHead } from '@ait_reusable_table_react'
 
 *All common `thead` props can be apply to this component*
 
+---
+
 ## TableBody
 
 ```tsx
@@ -83,6 +90,8 @@ import { TableBody } from '@ait_reusable_table_react'
 ```
 
 *All common `tbody` props can be apply to this component*
+
+---
 
 ## TableCell
 
@@ -110,6 +119,8 @@ import { TableBody } from '@ait_reusable_table_react'
 
 *All common `tbody` props can be apply to this component*
 
+---
+
 ## Paging
 
 ```tsx
@@ -136,6 +147,8 @@ import { InputSearch } from '@ait_reusable_table_react'
 
 *All common `input` props can be apply to this component*
 
-<h1 id="developers">Developers</h1>
+---
 
-[muhammad-f-huda-ait](/muhammad-f-huda-ait)
+# Developers
+
+[muhammad-f-huda-ait](https://github.com/muhammad-f-huda-ait)
