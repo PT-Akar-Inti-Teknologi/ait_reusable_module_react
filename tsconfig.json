@@ -23,12 +23,9 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
-      "@ait_reusable_table_react": [
-        "src/lib/components/index"
+      "~/*": [
+        "src/lib/*"
       ],
-      "@ait_reusable_table_react/query-params": [
-        "src/lib/components/query-params/index"
-      ]
     }
   },
   "include": [

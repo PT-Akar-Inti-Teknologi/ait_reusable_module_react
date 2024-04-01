@@ -2,7 +2,7 @@ import {
   InputSearch,
   Paging,
   Table
-} from "@ait_reusable_table_react/query-params";
+} from "~/components/query-params";
 import {
   ActionButton,
   Content,
@@ -13,7 +13,7 @@ import {
   TableHead,
   TableRow,
   ToggleDarkMode
-} from "@ait_reusable_table_react";
+} from "~/components";
 import {
   Wrapper
 } from "../../components";
