@@ -5,7 +5,7 @@ static String newPath(env) {
 pipeline {
   agent any
     environment {
-      SERVICE_TARGET_PORT = 3000
+      SERVICE_TARGET_PORT = 2403
       NAMESPACE = "ait-pro-web"
       PATH = newPath(env)
       ALLOWED_BRANCH = "dev"
