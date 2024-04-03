@@ -36,6 +36,7 @@ export function TableCell<T>({
   parentelement,
   placeholder,
   orderPrefix,
+  classNames,
   className,
   children,
   action,
@@ -88,6 +89,7 @@ export function TableCell<T>({
       withSort && 'cursor-pointer',
       ['number', 'boolean'].includes(typeof index) && Theme.index,
       action && Theme.action,
+      classNames?.cell,
       className
     )
   }, (
@@ -95,12 +97,13 @@ export function TableCell<T>({
       {(action) && (
         <Divider
           orientation="vertical"
-          className="absolute top-0 left-0 shadow-action"
+          className={twMerge(Theme.actionDivider, classNames?.actionDivider)}
         />
       )}
       <TableCellChildren
         displayLabeloptions={{ renderValue, validate, placeholder }}
         {...{
+          classNames,
           children,
           isHead,
           action,
@@ -112,8 +115,8 @@ export function TableCell<T>({
       </TableCellChildren>
       {(withSort) && (
         <span className="space-y-0.5 inline-block px-2">
-          <SortDescIcon className={twMerge(activeSort && !!params[param.sort] && params[param.sort] !== Sort.DESC && "invisible")} />
-          <SortAscIcon className={twMerge(activeSort && !!params[param.sort] && params[param.sort] !== Sort.ASC && "invisible")} />
+          <SortDescIcon className={twMerge(classNames?.icon, classNames?.descIcon, activeSort && !!params[param.sort] && params[param.sort] !== Sort.DESC && "invisible")} />
+          <SortAscIcon className={twMerge(classNames?.icon, classNames?.ascIcon, activeSort && !!params[param.sort] && params[param.sort] !== Sort.ASC && "invisible")} />
         </span>
       )}
     </>
@@ -122,6 +125,7 @@ export function TableCell<T>({
 
 function TableCellChildren<T>({
   displayLabeloptions,
+  classNames,
   children,
   isHead,
   action,
@@ -141,7 +145,7 @@ function TableCellChildren<T>({
   }
   if (action === true) {
     return (
-      <div className="flex flex-row justify-center gap-2">
+      <div className={twMerge(Theme.actionWrapper, classNames?.actionWrapper)}>
         {children}
       </div>
     );

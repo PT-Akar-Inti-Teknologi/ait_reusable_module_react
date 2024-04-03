@@ -5,5 +5,8 @@ export const Theme = {
     'text-center sticky right-0 bg-inherit',
     'dark:border-gray-700'
   ],
-  index: 'text-center w-[84px] p-3'
+  actionDivider: 'absolute top-0 left-0 shadow-action',
+  index: 'text-center w-[84px] p-3',
+
+  actionWrapper: 'flex flex-row justify-center gap-2'
 }

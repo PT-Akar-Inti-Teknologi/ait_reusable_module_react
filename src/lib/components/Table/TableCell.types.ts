@@ -5,6 +5,15 @@ export enum Sort {
   DESC = 'DESC'
 }
 
+export interface TableCellClassNames {
+  actionDivider?: string;
+  actionWrapper?: string;
+  cell?: string;
+  ascIcon?: string;
+  descIcon?: string;
+  icon?: string;
+}
+
 export interface GetParamKey {
   page: string;
   limit: string;
@@ -20,6 +29,7 @@ export interface DisplayLabelOptions<T> {
 
 export interface TableCellChildrenProps<T> {
   displayLabeloptions: DisplayLabelOptions<T>
+  classNames?: TableCellClassNames
   children?: ReactNode
   isHead?: boolean
   action?: boolean
