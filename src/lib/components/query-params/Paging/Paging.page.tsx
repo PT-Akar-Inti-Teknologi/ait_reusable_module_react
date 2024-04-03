@@ -1,7 +1,8 @@
-import { Paging as GenericPaging, PagingProps } from "../../Paging";
+import { Paging as GenericPaging } from "../../Paging";
 import { usePagingHook } from "./Paging.hooks";
+import { PagingProps } from "./Paging.types";
 
-export function Paging(props: Readonly<Omit<PagingProps, 'onChangePage' | 'page' | 'limit'>>) {
+function Paging(props: Readonly<PagingProps>) {
 
   const state = usePagingHook();
 
@@ -14,3 +15,9 @@ export function Paging(props: Readonly<Omit<PagingProps, 'onChangePage' | 'page'
     />
   );
 }
+
+Paging.defaultProps = {
+  total: 0
+} as PagingProps;
+
+export { Paging }
