@@ -13,7 +13,7 @@ export enum InputSizeMap {
 
 type InputSize = keyof typeof InputSizeMap;
 
-interface Classes {
+interface TextFieldClassNames {
   container?: string
   helperText?: string
   startIconWrapper?: string
@@ -25,14 +25,14 @@ interface Classes {
 }
 
 export interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
+  classNames?: TextFieldClassNames
   helperText?: string
   startIcon?: ComponentType<SVGProps<SVGSVGElement>>
   endIcon?: ComponentType<SVGProps<SVGSVGElement>>
+  onClickEndIcon?: MouseEventHandler<SVGSVGElement>
   prefix?: string | number
   suffix?: string | number
-  classes?: Classes
   sizing?: InputSize
   error?: boolean
   label?: string
-  onClickEndIcon?: MouseEventHandler<SVGSVGElement>
 }

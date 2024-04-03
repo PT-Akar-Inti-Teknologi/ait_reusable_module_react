@@ -32,10 +32,10 @@ import {
 function _TextField(
   {
     helperText,
+    classNames,
     className,
     startIcon,
     endIcon,
-    classes,
     prefix,
     suffix,
     sizing,
@@ -44,7 +44,7 @@ function _TextField(
     type,
     onClickEndIcon,
     ...props
-  }: TextFieldProps,
+  }: Readonly<TextFieldProps>,
   forwardedRef: Ref<HTMLInputElement>
 ) {
 
@@ -57,27 +57,27 @@ function _TextField(
   const hasSuffix = !!suffix;
 
   return (
-    <div className={twMerge(Theme.container, classes?.container, className)}>
+    <div className={twMerge(Theme.container, classNames?.container, className)}>
       {(!!label) && <Label required={props.required} {...{ error }}>{label}</Label>}
-      <div className={twMerge(Theme.wrapper, classes?.wrapper)}>
+      <div className={twMerge(Theme.wrapper, classNames?.wrapper)}>
         {(hasStartIcon || hasPrefix) && (
-          <div className={twMerge(Theme.startIconWrapper, classes?.startIconWrapper)}>
+          <div className={twMerge(Theme.startIconWrapper, classNames?.startIconWrapper)}>
             {hasStartIcon && createElement(startIcon, {
-              className: twMerge(Theme.svgIcon, classes?.startIcon),
+              className: twMerge(Theme.svgIcon, classNames?.startIcon),
             })}
             {(hasPrefix) && <Typography>{prefix}</Typography>}
           </div>
         )}
         {(isInputPassword) ? (
-          <div onClick={() => setPasswordVisible((_) => !_)} className={twMerge(Theme.endIconPasswordWrapper, classes?.endIconWrapper)}>
+          <div onClick={() => setPasswordVisible((_) => !_)} className={twMerge(Theme.endIconPasswordWrapper, classNames?.endIconWrapper)}>
             {createElement(isPasswordVisible ? EyeOpen : EyeClose, {
-              className: twMerge(Theme.svgIcon, classes?.endIcon),
+              className: twMerge(Theme.svgIcon, classNames?.endIcon),
             })}
           </div>
         ) : (hasEndIcon || hasSuffix) && (
-          <div className={twMerge(Theme.endIconWrapper, classes?.endIconWrapper)}>
+          <div className={twMerge(Theme.endIconWrapper, classNames?.endIconWrapper)}>
             {hasEndIcon && createElement(endIcon, {
-              className: twMerge(Theme.svgIcon, classes?.endIcon),
+              className: twMerge(Theme.svgIcon, classNames?.endIcon),
               onClick: onClickEndIcon
             })}
             {hasSuffix && <Typography>{suffix}</Typography>}
@@ -94,7 +94,7 @@ function _TextField(
             (hasEndIcon && hasSuffix) && "pe-20",
             !!sizing && InputSizeMap[sizing],
             error && Theme.inputError,
-            classes?.input
+            classNames?.input
           )}
           {...props}
         />
