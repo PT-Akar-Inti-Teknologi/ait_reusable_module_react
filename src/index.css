@@ -32,5 +32,5 @@ html {
 }
 
 #root {
-  @apply p-1 bg-gray-50 dark:bg-gray-900;
+  @apply p-1 bg-gray-50 dark:bg-gray-900 min-h-[100vh];
 }
