@@ -4,7 +4,10 @@ import {
   createElement
 } from "react";
 
-export function TableHead({ children, ...props }: TableHTMLAttributes<HTMLTableSectionElement>) {
+export function TableHead({
+  children,
+  ...props
+}: Readonly<TableHTMLAttributes<HTMLTableSectionElement>>) {
 
   return (
     <thead {...props}>

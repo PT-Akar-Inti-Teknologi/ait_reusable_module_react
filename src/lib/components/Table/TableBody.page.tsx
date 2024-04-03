@@ -7,7 +7,10 @@ import {
   TableBodyProps
 } from "./TableBody.types";
 
-export function TableBody({ children, ...props }: TableBodyProps) {
+export function TableBody({
+  children,
+  ...props
+}: Readonly<TableBodyProps>) {
 
   return (
     <tbody {...props}>
