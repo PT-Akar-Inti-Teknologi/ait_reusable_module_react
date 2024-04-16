@@ -2,25 +2,25 @@ import {
   useUrlSearchParams
 } from "../../../hooks";
 import {
-  Table as GenericTable,
+  Table,
   TableProps
 } from "../../Table";
 
-export function Table({
+export function TableParams({
   children,
   ...props
 }: Readonly<TableProps>) {
 
   const [searchParams, setSearchParams] = useUrlSearchParams();
-  const params = { page: 1, limit: 10, ...searchParams };
+  const params = { page: 1, size: 10, ...searchParams };
 
   return (
-    <GenericTable
+    <Table
       onUpdateParams={setSearchParams}
       params={params}
       {...props}
     >
       {children}
-    </GenericTable>
+    </Table>
   );
 }

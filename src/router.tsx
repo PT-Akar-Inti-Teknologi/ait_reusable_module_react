@@ -1,11 +1,25 @@
-import { createBrowserRouter } from "react-router-dom";
+import {
+  createBrowserRouter
+} from "react-router-dom";
 
-import { ExamplePage } from "./examples/modules";
+import {
+  ExamplePage,
+  ExampleWithQueryParamsPage,
+  ExampleWithReactQueryPage
+} from "./examples/modules";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <ExamplePage />,
+    path: '/common-usage'
+  },
+  {
+    element: <ExampleWithQueryParamsPage />,
+    path: '/example-with-query-params'
+  },
+  {
+    element: <ExampleWithReactQueryPage />,
+    path: '/'
   },
 ]);
 

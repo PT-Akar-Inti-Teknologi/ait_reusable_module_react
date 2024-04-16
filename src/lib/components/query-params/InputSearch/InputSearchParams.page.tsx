@@ -3,20 +3,20 @@ import {
 } from "react";
 
 import {
-  InputSearch as GenericInputSearch,
+  InputSearch,
   InputSearchProps
 } from "../../InputSearch";
 import {
   useUrlSearchParams
 } from "../../../hooks";
 
-export function InputSearch({
+export function InputSearchParams({
   className,
   ...props
 }: Readonly<InputSearchProps>) {
 
   const [searchParams, setSearchParams] = useUrlSearchParams<'search' | 'page'>();
-  const timeoutRef = useRef<number>();
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   const handleSearch = (value: string) => {
     clearTimeout(timeoutRef.current);
@@ -26,7 +26,7 @@ export function InputSearch({
   };
 
   return (
-    <GenericInputSearch
+    <InputSearch
       defaultValue={searchParams.search}
       onChangeText={handleSearch}
       key={!searchParams.search ? "0" : "1"}

@@ -1,11 +1,26 @@
-import { Fragment } from "react";
+import {
+  Fragment
+} from "react";
 
-import { safeArray } from "~/utils";
-import { Table, TableBody, TableHead, TableRow } from "~/components/Table";
-import { useUrlSearchParams } from "~/hooks";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableRow
+} from "~/components/Table";
+import {
+  useUrlSearchParams
+} from "~/hooks";
+import {
+  safeArray
+} from "~/utils";
 
-import { useQueryStateContext } from "../QueryState/QueryState.context";
-import { TableQueryProps } from "./TableQuery.types";
+import {
+  useQueryStateContext
+} from "../QueryState/QueryState.context";
+import {
+  TableQueryProps
+} from "./TableQuery.types";
 
 export function TableQuery<T>({
   keyExtractor,
@@ -14,7 +29,7 @@ export function TableQuery<T>({
   ...props
 }: Readonly<TableQueryProps<T>>) {
 
-  const [_, setSearchParams] = useUrlSearchParams();
+  const [searchParams, setSearchParams] = useUrlSearchParams();
   const { data } = useQueryStateContext();
 
   const {
@@ -33,7 +48,7 @@ export function TableQuery<T>({
   return (
     <Table
       onUpdateParams={setSearchParams}
-      params={{ page, limit: size }}
+      params={{ ...searchParams, page, size }}
       {...props}
     >
       <TableHead>

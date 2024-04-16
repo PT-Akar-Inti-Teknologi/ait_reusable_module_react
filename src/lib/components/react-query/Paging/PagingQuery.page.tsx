@@ -1,4 +1,4 @@
-import { Paging } from "~/components/query-params";
+import { PagingParams } from "~/components/query-params";
 
 import { useQueryStateContext } from "../QueryState/QueryState.context";
 
@@ -11,7 +11,7 @@ export function PagingQuery() {
   } = useQueryStateContext();
 
   return (
-    <Paging
+    <PagingParams
       loading={isFetching || isLoading}
       total={data?.pagination?.total}
     />

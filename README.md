@@ -17,6 +17,7 @@ A fully-fledged Table module created for React apps. Provides table component, s
   * [Typography](#typography)
   * [Paging](#paging)
   * [InputSearch](#inputsearch)
+* [Example](#example)
 * [Developers](#developers)
 
 # Introduction
@@ -84,7 +85,7 @@ import { Table } from 'ait_reusable_table_react'
 
 | Name | Type | Required |
 | --- | --- | :---: |
-| [x: string] | any |
+| [x: string] | any | No |
 
 </details>
 
@@ -130,7 +131,7 @@ import { TableBody } from 'ait_reusable_table_react'
 | classNames | [TableCellClassNames](#tablecellclassnames) | Class name that apply to TableCell component | undefined | No |
 | index | boolean | Set TableCell behavior as index | false | No |
 | order | string | Can be used to add sort-order function | undefined | No |
-| orderPrefix | string | apply prefix to order value | undefined | No |
+| orderPrefix | string | apply prefix to order value, useful if you want to apply multiple sort-order | undefined | No |
 | action | boolean | Set TableCell behavior as action | false | No |
 
 **TableBody > TableRow > TableCell**
@@ -194,7 +195,7 @@ import { Typography } from 'ait_reusable_table_react'
 | --- | --- | --- | --- | :---: |
 | children | ReactNode | Children Component | undefined | No |
 | variant | 'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6' \| 'body1' \| 'body2' \| 'subtitle1' \| 'subtitle2' \| 'caption' | Set behavior of Typography | body1 | No |
-| type | 'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6' | Set type of Typography | body1 | No |
+| type | 'light' \| 'normal' \| 'medium' \| 'semibold' \| 'bold' | Set type of Typography | normal | No |
 
 *All common `HTMLAttributes` can be apply to this component*
 
@@ -248,7 +249,7 @@ import { Paging } from 'ait_reusable_table_react'
 ```
 
 | Parameter | Type | Description | Default Value | Required |
-| --- | --- | --- | --- | :---: |
+| --- | --- | --- | :---: | :---: |
 | onChangePage | (data: [PagingParams](#pagingparams)) => void | Fired when paging was changed | undefined | Yes |
 | page | number | Current page | 1 | No |
 | limit | number | Total data to display per page | 10 | No |
@@ -281,6 +282,12 @@ import { InputSearch } from 'ait_reusable_table_react'
 | value | string | set controlled value for this component | undefined | No |
 
 *All common `input` props can be apply to this component*
+
+# Example
+How to use it
+```jsx
+
+```
 
 # Developers
 

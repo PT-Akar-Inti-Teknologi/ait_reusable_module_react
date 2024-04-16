@@ -2,9 +2,9 @@ import { PagingParams } from "../../Paging";
 import { useUrlSearchParams } from "../../../hooks";
 import { useEffect } from "react";
 
-export function usePagingHook() {
+export function usePagingParamsHook() {
 
-  const [searchParams, setSearchParams] = useUrlSearchParams<'page' | 'limit'>();
+  const [searchParams, setSearchParams] = useUrlSearchParams<'page' | 'size'>();
 
   useEffect(
     () => {
@@ -12,8 +12,8 @@ export function usePagingHook() {
       if (!searchParams.page) {
         Object.assign(defaultparams, { page: 1 });
       }
-      if (!searchParams.limit) {
-        Object.assign(defaultparams, { limit: 1 });
+      if (!searchParams.size) {
+        Object.assign(defaultparams, { size: 1 });
       }
     },
     []
@@ -24,7 +24,7 @@ export function usePagingHook() {
   };
 
   const params = {
-    limit: !searchParams.limit ? undefined : +searchParams.limit,
+    size: !searchParams.size ? undefined : +searchParams.size,
     page: !searchParams.page ? undefined : +searchParams.page
   };
 

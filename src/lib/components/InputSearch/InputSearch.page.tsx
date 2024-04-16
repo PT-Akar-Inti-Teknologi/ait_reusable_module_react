@@ -66,7 +66,7 @@ function _InputSearch({
       startIcon={SearchIcon}
       endIcon={hasValue ? CloseIcon : undefined}
       onClickEndIcon={handleClear}
-      classes={hasValue ? { endIconWrapper: "cursor-pointer !pointer-events-auto z-10" } : undefined}
+      classNames={hasValue ? { endIconWrapper: "cursor-pointer !pointer-events-auto z-10" } : undefined}
       onChange={handleChange}
       {...{ ref, id, ...props }}
     />

@@ -1,13 +1,15 @@
 import {
-  InputSearch,
-  Paging,
-  Table
-} from "~/components/query-params";
+  useState
+} from "react";
+
 import {
   ActionButton,
   Content,
   ContentBody,
   ContentHeader,
+  InputSearch,
+  Paging,
+  Table,
   TableBody,
   TableCell,
   TableHead,
@@ -20,14 +22,24 @@ import {
 
 export function ExamplePage() {
 
+  const [params, setParams] = useState({
+    total: 1000,
+    size: 10,
+    page: 1
+  });
+
+  const updateParams = (value: typeof params) => {
+    setParams((_) => ({ ..._, ...value }));
+  };
+
   const renderTableItem = (_: any, index: number) => {
     return (
       <TableRow key={index}>
         <TableCell {...{ index }} />
         <TableCell>First Name</TableCell>
         <TableCell>Last Name</TableCell>
-        <TableCell>Last Name</TableCell>
-        <TableCell>Gender</TableCell>
+        <TableCell>Username</TableCell>
+        <TableCell>Email</TableCell>
         <TableCell action={true}>
           <ActionButton variant="detail" />
           <ActionButton variant="edit" />
@@ -45,23 +57,26 @@ export function ExamplePage() {
         </ContentHeader>
         <ContentBody>
           <InputSearch />
-          <Table>
+          <Table onUpdateParams={(_: any) => updateParams(_)} {...{ params }}>
             <TableHead>
               <TableRow>
                 <TableCell index={true} />
-                <TableCell orderPrefix="table" order="first_name">First Name</TableCell>
+                <TableCell order="first_name">First Name</TableCell>
                 <TableCell order="last_name">Last Name</TableCell>
-                <TableCell orderPrefix="tablee" order="last_namee">Last Name</TableCell>
-                <TableCell>Gender</TableCell>
+                <TableCell order="username">Username</TableCell>
+                <TableCell orderPrefix="example" order="email">Email</TableCell>
                 <TableCell className="w-[160px]" action={true}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.from({ length: 10 }, renderTableItem)}
+              {Array.from({ length: params.size }, renderTableItem)}
             </TableBody>
           </Table>
           <Paging
-            total={100}
+            onChangePage={(_: any) => updateParams(_)}
+            total={params.total}
+            size={params.size}
+            page={params.page}
           />
         </ContentBody>
       </Content>

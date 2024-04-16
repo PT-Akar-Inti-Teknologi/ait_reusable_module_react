@@ -1,19 +1,19 @@
 
 export interface ExampleParams {
-  searchBy?: string;
-  sortBy?: string;
-  sortField?: string;
-  pageNumber?: string;
-  pageSize?: string;
+  search?: string;
+  sort?: string;
+  order?: string;
+  page?: string;
+  size?: string;
 }
 
 export interface ExampleModel {
   id: string;
   username: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  birthDate?: any;
+  first_name: string;
+  last_name: string;
+  birth_date?: any;
   roles: RoleModel;
 }
 interface RoleModel {

@@ -1,1 +1,1 @@
-export * from './Table.page';
+export * from './TableParams.page';

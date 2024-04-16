@@ -1,1 +1,1 @@
-export * from './InputSearch.page';
+export * from './InputSearchParams.page';

@@ -1,3 +1,3 @@
-export * from './Paging.page';
+export * from './PagingParams.page';
 
-export * from './Paging.types';
+export * from './PagingParams.types';

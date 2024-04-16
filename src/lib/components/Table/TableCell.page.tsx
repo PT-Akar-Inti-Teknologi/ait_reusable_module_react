@@ -46,7 +46,11 @@ export function TableCell<T>({
   ...props
 }: TableCellProps<T>) {
 
-  const { params, updateParams, setInitParams, } = useTableContext();
+  const {
+    params,
+    updateParams,
+    setInitParams
+  } = useTableContext();
 
   const param = getParamKey(orderPrefix);
   const activeSort = params?.[param.order] === order;
@@ -150,8 +154,8 @@ function TableCellChildren<T>({
       </div>
     );
   }
-  if (typeof (index) === 'number' && params.limit !== undefined && params.page !== undefined) {
-    return <>{(+params.limit * (+params.page - 1)) + (index + 1)}</>
+  if (typeof (index) === 'number' && params.size !== undefined && params.page !== undefined) {
+    return <>{(+params.size * Math.max(+params.page - 1, 0)) + (index + 1)}</>
   }
   if (!children) {
     return <>{displayValue(value, displayLabeloptions)}</>;

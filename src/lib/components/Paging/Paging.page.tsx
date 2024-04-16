@@ -9,19 +9,19 @@ function Paging({
   className,
   loading,
   total,
-  limit,
+  size,
   page,
   ...props
 }: Readonly<PagingProps>) {
 
-  const totalPage = Math.ceil(+total / +limit);
+  const totalPage = Math.ceil(+total / +size);
   const isStartPage = +page < 5;
   const isLessPage = totalPage <= 7;
   const isEndPage = !isLessPage && (+page > (+totalPage - 4));
 
   const handleChangePage = (data: Record<string, number>) => {
     onChangePage({
-      limit,
+      size,
       page,
       ...data
     });
@@ -63,9 +63,9 @@ function Paging({
   return (
     <div className={twMerge(Theme.container, className)} {...props}>
       <select
-        onChange={(_) => handleChangePage({ limit: +_.target.value, page: 1 })}
+        onChange={(_) => handleChangePage({ size: +_.target.value, page: 1 })}
         className={twMerge(Theme.select)}
-        value={limit}
+        value={size}
       >
         <option>10</option>
         <option>20</option>
@@ -152,7 +152,7 @@ function Etc(props: { visible: boolean }) {
 }
 
 Paging.defaultProps = {
-  limit: 10,
+  size: 10,
   total: 0,
   page: 1
 } as PagingProps;

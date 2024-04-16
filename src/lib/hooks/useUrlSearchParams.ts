@@ -25,7 +25,7 @@ export function useUrlSearchParams<T extends string>(
 
   const updateSearchParams = (newParams: any) => {
     const mergedParams = cleanObject({ ...params, ...newParams });
-    setSearchParams(mergedParams);
+    setSearchParams(mergedParams, { replace: true });
   };
 
   return [params, updateSearchParams];
