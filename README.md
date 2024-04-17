@@ -30,13 +30,13 @@ A fully-fledged Table module created for React apps. Provides table component, s
 
 ## Install The Module
 
-With npm
+With NPM
 
 ```bash
 npm add ait_reusable_table_react
 ```
 
-With yarn
+With Yarn
 
 ```bash
 yarn add ait_reusable_table_react
@@ -53,6 +53,7 @@ This project uses Tailwind CSS for UI Framework. [You can refer this link to ins
 | Node.js | ^18.19.1 |
 | React | ^18.2.0 |
 | Tailwind CSS | ^3.4.1 |
+| react-router-dom | ^6.22.3 |
 
 # Components
 
@@ -123,28 +124,28 @@ import { TableBody } from 'ait_reusable_table_react'
 
 ## TableCell
 
-**TableHead > TableRow > TableCell**
+**Table > TableHead > TableRow > TableCell**
 
 | Parameter | Type | Description | Default Value | Required |
 | --- | --- | --- | --- | :---: | 
 | children | ReactNode | Children Component | undefined | No |
 | classNames | [TableCellClassNames](#tablecellclassnames) | Class name that apply to TableCell component | undefined | No |
 | index | boolean | Set TableCell behavior as index | false | No |
-| order | string | Can be used to add sort-order function | undefined | No |
+| order | string | Can be used to provide sort-order function | undefined | No |
 | orderPrefix | string | apply prefix to order value, useful if you want to apply multiple sort-order | undefined | No |
 | action | boolean | Set TableCell behavior as action | false | No |
 
-**TableBody > TableRow > TableCell**
+**Table > TableBody > TableRow > TableCell**
 
 | Parameter | Type | Description | Default Value | Required |
 | --- | --- | --- | --- | :---: | 
 | children | ReactNode | Children Component | undefined | No |
 | classNames | [TableCellClassNames](#tablecellclassnames) | Class name that apply to TableCell component | undefined | No |
 | index | number | Set TableCell index | undefined | No |
-| value | any | Set TableCell with validation | undefined | No |
-| validate | (value: any) => boolean | custom validation | undefined | No |
+| value | any | Set TableCell children with validation. If validation is fail, placeholder will appear instead | undefined | No |
+| validate | (value: T) => boolean | custom validation | undefined | No |
 | placeholder | string | appear while return validate is false | - | No |
-| renderValue | (value: T) => ReactNode | custom render value | undefined | No |
+| renderValue | (value: T) => ReactNode | Render custom value. Useful if you want to mapping value of Array or Object | undefined | No |
 | action | boolean | Set TableCell behavior as action | false | No |
 
 *All common `tbody` props can be apply to this component*
@@ -173,7 +174,7 @@ import { TableBody } from 'ait_reusable_table_react'
 import { ActionButton } from 'ait_reusable_table_react'
 ```
 
-Used for `Table` action
+Used for `TableCell` action
 
 | Parameter | Type | Description | Default Value | Required |
 | --- | --- | --- | --- | :---: |
@@ -284,10 +285,108 @@ import { InputSearch } from 'ait_reusable_table_react'
 *All common `input` props can be apply to this component*
 
 # Example
-How to use it
-```jsx
 
+How to use it
+
+#### Common Usage
+
+```jsx
+import {
+  useState
+} from "react";
+
+import {
+  ActionButton,
+  Content,
+  ContentBody,
+  ContentHeader,
+  InputSearch,
+  Paging,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  ToggleDarkMode
+} from "ait_reusable_table_react";
+import {
+  Wrapper
+} from "../../components";
+
+export function ExamplePage() {
+
+  const [params, setParams] = useState({
+    total: 1000,
+    size: 10,
+    page: 1
+  });
+
+  const updateParams = (value: typeof params) => {
+    setParams((_) => ({ ..._, ...value }));
+  };
+
+  const renderTableItem = (_: any, index: number) => {
+    return (
+      <TableRow key={index}>
+        <TableCell {...{ index }} />
+        <TableCell>First Name</TableCell>
+        <TableCell>Last Name</TableCell>
+        <TableCell>Username</TableCell>
+        <TableCell>Email</TableCell>
+        <TableCell action={true}>
+          <ActionButton variant="detail" />
+          <ActionButton variant="edit" />
+          <ActionButton variant="delete" />
+        </TableCell>
+      </TableRow>
+    );
+  };
+
+  return (
+    <Wrapper>
+      <Content>
+        <ContentHeader title="Table Example">
+          <ToggleDarkMode />
+        </ContentHeader>
+        <ContentBody>
+          <InputSearch />
+          <Table onUpdateParams={(_: any) => updateParams(_)} {...{ params }}>
+            <TableHead>
+              <TableRow>
+                <TableCell index={true} />
+                <TableCell order="first_name">First Name</TableCell>
+                <TableCell order="last_name">Last Name</TableCell>
+                <TableCell order="username">Username</TableCell>
+                <TableCell orderPrefix="example" order="email">Email</TableCell>
+                <TableCell className="w-[160px]" action={true}></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {Array.from({ length: params.size }, renderTableItem)}
+            </TableBody>
+          </Table>
+          <Paging
+            onChangePage={(_: any) => updateParams(_)}
+            total={params.total}
+            size={params.size}
+            page={params.page}
+          />
+        </ContentBody>
+      </Content>
+    </Wrapper>
+  );
+}
 ```
+
+#### Integrating with Query Params
+
+See [src/examples/modules/ExampleWithQueryParams](https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react/blob/main/src/examples/modules/ExampleWithQueryParams)
+
+#### Integrating with Query Params and React Query
+
+**Make sure your Backend was following AIT standard.**
+
+See [src/examples/modules/ExampleWithReactQuery](https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react/tree/main/src/examples/modules/ExampleWithReactQuery)
 
 # Developers
 
