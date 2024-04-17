@@ -1,6 +1,6 @@
 {
   "name": "ait_reusable_table_react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "source": "src/lib/components/index.ts",
   "main": "dist/index.cjs",
