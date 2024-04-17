@@ -21,7 +21,7 @@ import {
 } from "../../components";
 import {
   useExampleHook
-} from "./Example.hook";
+} from "./Example.hooks";
 import {
   ExampleModel
 } from "./Example.types";
@@ -34,10 +34,10 @@ export function ExampleWithReactQueryPage() {
     return (
       <TableRow key={index}>
         <TableCell {...{ index }} />
-        <TableCell>{item.first_name}</TableCell>
-        <TableCell>{item.last_name}</TableCell>
-        <TableCell>{item.username}</TableCell>
-        <TableCell>{item.email}</TableCell>
+        <TableCell value={item.first_name} />
+        <TableCell value={item.last_name} />
+        <TableCell value={item.username} />
+        <TableCell value={item.email} />
         <TableCell action={true}>
           <ActionButton variant="detail" />
           <ActionButton variant="edit" />

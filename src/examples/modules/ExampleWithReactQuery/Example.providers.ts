@@ -24,7 +24,6 @@ export function useGetExample() {
     page: (+searchParams.page! - 1).toString(),
     size: searchParams.size
   };
-  console.log("🚀 ~ useGetExample ~ params: ExampleParams.searchParams:", searchParams)
 
   return useQuery<
     AxiosResponse<BaseResponse<Pagination<ExampleModel[]>>>,

@@ -1,8 +1,4 @@
 import {
-  useState
-} from "react";
-
-import {
   InputSearchParams,
   PagingParams,
   TableParams
@@ -19,22 +15,14 @@ import {
   ToggleDarkMode
 } from "~/components";
 import {
+  useUrlSearchParams
+} from "~/hooks";
+
+import {
   Wrapper
 } from "../../components";
-import { useUrlSearchParams } from "~/hooks";
 
 export function ExampleWithQueryParamsPage() {
-
-  const [params, setParams] = useState({
-    total: 1000,
-    limit: 10,
-    page: 1
-  });
-
-  const updateParams = (value: typeof params) => {
-    console.log("🚀 ~ updateParams ~ value:", value)
-    setParams((_) => ({ ..._, ...value }));
-  };
 
   return (
     <Wrapper>

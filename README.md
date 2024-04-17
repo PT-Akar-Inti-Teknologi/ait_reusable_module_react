@@ -288,7 +288,7 @@ import { InputSearch } from 'ait_reusable_table_react'
 
 How to use it
 
-#### Common Usage
+### Common Usage
 
 ```jsx
 import {
@@ -378,11 +378,11 @@ export function ExamplePage() {
 }
 ```
 
-#### Integrating with Query Params
+### Integrating with Query Params
 
 See [src/examples/modules/ExampleWithQueryParams](https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react/blob/main/src/examples/modules/ExampleWithQueryParams)
 
-#### Integrating with Query Params and React Query
+### Integrating with Query Params and React Query
 
 **Make sure your Backend was following AIT standard.**
 
