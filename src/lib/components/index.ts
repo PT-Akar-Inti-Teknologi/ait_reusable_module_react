@@ -6,3 +6,4 @@ export * from './Content';
 export * from './ToggleDarkMode';
 export * from './InputSearch';
 export * from './Typography';
+export * from './TextField';

@@ -61,7 +61,7 @@ export function ExampleWithReactQueryPage() {
                 <TableCell index={true} />
                 <TableCell order="first_name">First Name</TableCell>
                 <TableCell order="last_name">Last Name</TableCell>
-                <TableCell order="last_namee">Username</TableCell>
+                <TableCell order="username">Username</TableCell>
                 <TableCell order="email">Email</TableCell>
                 <TableCell className="w-[160px]" action={true}></TableCell>
               </TableQuery>

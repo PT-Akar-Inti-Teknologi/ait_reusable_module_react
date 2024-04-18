@@ -1,8 +1,8 @@
 import { ReactNode, TableHTMLAttributes } from "react";
 
 export enum Sort {
-  ASC = 'ASC',
-  DESC = 'DESC'
+  ASC = 'asc',
+  DESC = 'desc'
 }
 
 export interface TableCellClassNames {

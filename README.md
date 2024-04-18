@@ -142,7 +142,7 @@ import { TableBody } from 'ait_reusable_table_react'
 | children | ReactNode | Children Component | undefined | No |
 | classNames | [TableCellClassNames](#tablecellclassnames) | Class name that apply to TableCell component | undefined | No |
 | index | number | Set TableCell index | undefined | No |
-| value | any | Set TableCell children with validation. If validation is fail, placeholder will appear instead | undefined | No |
+| value | any | Set TableCell children with validation. If validation is fail, placeholder will be appear instead, prefer to use this props instead of children if your given children posibly undefined | undefined | No |
 | validate | (value: T) => boolean | custom validation | undefined | No |
 | placeholder | string | appear while return validate is false | - | No |
 | renderValue | (value: T) => ReactNode | Render custom value. Useful if you want to mapping value of Array or Object | undefined | No |
@@ -288,6 +288,8 @@ import { InputSearch } from 'ait_reusable_table_react'
 
 How to use it
 
+#### [Demo](https://ait-reusable-table-react.sandbait.work/common-usage)
+
 ### Common Usage
 
 ```jsx
@@ -380,11 +382,15 @@ export function ExamplePage() {
 
 ### Integrating with Query Params
 
+#### [Demo](https://ait-reusable-table-react.sandbait.work/example-with-query-params)
+
 See [src/examples/modules/ExampleWithQueryParams](https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react/blob/main/src/examples/modules/ExampleWithQueryParams)
 
 ### Integrating with Query Params and React Query
 
 **Make sure your Backend was following AIT standard.**
+
+#### [Demo](https://ait-reusable-table-react.sandbait.work/)
 
 See [src/examples/modules/ExampleWithReactQuery](https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react/tree/main/src/examples/modules/ExampleWithReactQuery)
 

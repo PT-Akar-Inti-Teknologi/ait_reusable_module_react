@@ -33,8 +33,8 @@ export function TableQuery<T>({
   const { data } = useQueryStateContext();
 
   const {
-    page,
-    size
+    page = 0,
+    size = 10
   } = data?.pagination || {};
 
   const renderTableItem = (item: any, index: number) => {
@@ -48,7 +48,7 @@ export function TableQuery<T>({
   return (
     <Table
       onUpdateParams={setSearchParams}
-      params={{ ...searchParams, page, size }}
+      params={{ ...searchParams, page: page + 1, size }}
       {...props}
     >
       <TableHead>
