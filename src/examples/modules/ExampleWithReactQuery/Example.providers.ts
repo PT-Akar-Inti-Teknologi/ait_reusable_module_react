@@ -19,9 +19,8 @@ export function useGetExample() {
 
   const params: ExampleParams = {
     search: searchParams.search,
-    sort: searchParams.sort,
-    order: searchParams.order,
-    page: (+searchParams.page! - 1).toString(),
+    page: (+(searchParams.page ?? '1') - 1).toString(),
+    sort: !searchParams.order || !searchParams.sort ? undefined : `${searchParams.order},${searchParams.sort}`,
     size: searchParams.size
   };
 
