@@ -1,23 +1,23 @@
 {
   "name": "ait_reusable_table_react",
-  "version": "0.0.2",
+  "version": "0.0.30",
   "type": "module",
   "source": "src/lib/components/index.ts",
-  "main": "dist/index.cjs",
-  "module": "dist/index.module.js",
-  "unpkg": "dist/index.umd.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/ait_reusable_table_react.cjs",
+  "module": "./dist/ait_reusable_table_react.module.js",
+  "unpkg": "./dist/ait_reusable_table_react.umd.js",
+  "exports": {
+    "require": "./dist/ait_reusable_table_react.cjs",
+    "default": "./dist/ait_reusable_table_react.module.js",
+    "import": "./dist/ait_reusable_table_react.module.js"
+  },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
+    "dev:module": "microbundle watch",
     "build": "tsc && vite build",
+    "build:module": "microbundle --sourcemap false --jsx React.createElement --output dist --tsconfig ./tsconfig.json",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "build-package": "microbundle"
-  },
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js",
-    "types": "./dist/index.d.ts"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
