@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 import { hasArray, hasObjectValues } from "~/utils";
 import { useUrlSearchParams } from "~/hooks";
-import { Typography } from "~/components";
+import { Button, Typography } from "~/components";
 
 import { QueryStateProps } from "./QueryState.types"
 import { Theme } from "./QueryStateContent.theme";
@@ -52,15 +52,9 @@ function QueryState<T>({
         description={errorMessage || "Interal server error"}
         {...props}
       >
-        <a
-          href="#"
-          onClick={((event) => {
-            event.preventDefault();
-            query?.refetch();
-          })}
-        >
+        <Button onClick={() => query?.refetch()}>
           Reload
-        </a>
+        </Button>
       </QueryStateContent>
     );
   }

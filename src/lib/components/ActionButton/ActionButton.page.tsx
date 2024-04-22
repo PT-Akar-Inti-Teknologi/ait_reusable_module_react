@@ -10,6 +10,9 @@ import {
 } from "react";
 
 import {
+  LoadingIcon
+} from "../Button/Icons";
+import {
   ActionButtonProps
 } from "./ActionButton.types";
 import {
@@ -18,7 +21,6 @@ import {
   Theme
 } from "./ActionButton.theme";
 import {
-  LoadingIcon,
   DeleteIcon,
   DetailIcon,
   EditIcon
