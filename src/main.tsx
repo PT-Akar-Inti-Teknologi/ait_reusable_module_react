@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { RouterProvider } from 'react-router-dom';
@@ -15,10 +15,29 @@ const queryClient = new QueryClient({
   }
 });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+function Main() {
+
+  const storageKey = 'prefs-color-scheme';
+
+  useLayoutEffect(
+    () => {
+      const isDark = localStorage.getItem(storageKey);
+      if (isDark === 'true') {
+        document.body.classList.add('dark');
+      }
+    },
+    []
+  );
+
+  return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
     </QueryClientProvider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <Main />
   </React.StrictMode>,
 );
