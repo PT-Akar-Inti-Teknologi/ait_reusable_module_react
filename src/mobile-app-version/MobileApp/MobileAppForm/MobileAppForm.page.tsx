@@ -8,11 +8,12 @@ import {
   ContentBody,
   ContentHeader,
   ControlLabel,
-  Radio,
-  Select
+  Radio
 } from "~/components";
 import {
   HookFormProvider,
+  InputRadioGroup,
+  InputSelect,
   InputTextField
 } from "~/components/hook-form";
 import {
@@ -34,7 +35,7 @@ export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
           <>
             <ContentBody>
               <ControlLabel required={true} label="Platform">
-                <Select
+                <InputSelect
                   placeholder="Select platform"
                   options={state.platformMaster}
                   name="platform"
@@ -47,10 +48,10 @@ export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
                 />
               </ControlLabel>
               <ControlLabel required={true} label="Type" >
-                <div className="flex flex-row gap-6">
-                  <Radio label="Soft Update" checked={true} />
-                  <Radio label="Force Update" checked={false} />
-                </div>
+                <InputRadioGroup name="type">
+                  <Radio label="Soft Update" value="soft_update" />
+                  <Radio label="Force Update" value="force_update" />
+                </InputRadioGroup>
               </ControlLabel>
             </ContentBody>
             <ContentAction>

@@ -1,5 +1,6 @@
 import {
-  Controller
+  Controller,
+  useFormContext
 } from "react-hook-form";
 import {
   GroupBase,
@@ -9,7 +10,7 @@ import {
 import {
   OmitSelectProps,
   Select
-} from "../../Inputs";
+} from "~/components/Select";
 import {
   InputSelectProps
 } from "./InputSelect.types";
@@ -27,13 +28,13 @@ export function InputSelect<
 >({
   onChangeValue,
   disabled,
-  form,
   rule,
   name,
   ...props
 }: InputSelectProps<Option> & Omit<Props<Option, IsMulti, Group>, OmitSelectProps>) {
 
   const isDisabled = useDisabledField(name);
+  const form = useFormContext();
 
   return (
     <Controller

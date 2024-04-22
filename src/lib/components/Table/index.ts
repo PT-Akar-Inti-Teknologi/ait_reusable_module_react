@@ -7,4 +7,6 @@ export * from './Table.page';
 export * from './Table.types';
 export * from './TableCell.types';
 
+export * from './TableCell.utils';
+
 export * from './Table.context';

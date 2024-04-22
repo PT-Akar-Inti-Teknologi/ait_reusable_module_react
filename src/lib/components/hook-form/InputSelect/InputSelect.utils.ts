@@ -1,6 +1,6 @@
 import { RegisterOptions } from "react-hook-form";
-import { hasArray } from "src/app/utils/array-utils";
-import { hasObject } from "src/app/utils/object-utils";
+
+import { hasArray, hasObject } from "~/utils";
 
 const defaultErrorMessage = 'Field cannot be empty'
 

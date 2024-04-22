@@ -13,4 +13,6 @@ export * from './Checkbox';
 export * from './Select';
 export * from './ControlLabel';
 export * from './Radio';
+export * from './LabelItem';
 export * from './Button';
+export * from './InputGroup';
