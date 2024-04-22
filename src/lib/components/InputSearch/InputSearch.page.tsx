@@ -40,7 +40,7 @@ function _InputSearch({
   useEffect(
     () => {
       inputRef.current = document.getElementById(id) as HTMLInputElement;
-      setHasValue(!!inputRef.current);
+      setHasValue(!!inputRef.current.value);
     },
     [_hasValue]
   );
@@ -61,6 +61,7 @@ function _InputSearch({
 
   return (
     <TextField
+      autoComplete="off"
       placeholder="Search"
       className={twMerge("max-w-[500px] px-6 w-full", className)}
       startIcon={SearchIcon}

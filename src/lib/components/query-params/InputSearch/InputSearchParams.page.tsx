@@ -21,15 +21,17 @@ export function InputSearchParams({
   const handleSearch = (value: string) => {
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
-      setSearchParams({ search: value, page: '1' });
-    }, 400);
+      setSearchParams({
+        search: value,
+        page: undefined
+      });
+    }, 300);
   };
 
   return (
     <InputSearch
       defaultValue={searchParams.search}
       onChangeText={handleSearch}
-      key={!searchParams.search ? "0" : "1"}
       {...props}
     />
   );
