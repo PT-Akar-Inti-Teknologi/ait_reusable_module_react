@@ -13,7 +13,7 @@ export function usePagingParamsHook() {
         Object.assign(defaultparams, { page: 1 });
       }
       if (!searchParams.size) {
-        Object.assign(defaultparams, { size: 1 });
+        Object.assign(defaultparams, { size: 10 });
       }
     },
     []

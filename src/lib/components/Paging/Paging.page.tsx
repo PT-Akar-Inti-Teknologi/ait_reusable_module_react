@@ -3,21 +3,26 @@ import { twMerge } from "tailwind-merge";
 import { Theme } from "./Paging.theme";
 import { PagingProps } from "./Paging.types";
 import { ChevronLeftIcon, ChevronRightIcon } from "./Icons";
+import { pagingSizeMaster } from "./Paging.templates";
 
 function Paging({
+  total: totalProp,
+  size: sizeProp,
+  page: pageProp,
   onChangePage,
   className,
   loading,
-  total,
-  size,
-  page,
   ...props
 }: Readonly<PagingProps>) {
 
-  const totalPage = Math.ceil(+total / +size);
-  const isStartPage = +page < 5;
+  const page = Math.max(+pageProp || 1, 1);
+  const total = Math.max(+totalProp || 0, 1);
+  const size = Math.max(+sizeProp || 10, 1);
+
+  const totalPage = Math.ceil(total / +size);
+  const isStartPage = page < 5;
   const isLessPage = totalPage <= 7;
-  const isEndPage = !isLessPage && (+page > (+totalPage - 4));
+  const isEndPage = !isLessPage && (page > (totalPage - 4));
 
   const handleChangePage = (data: Record<string, number>) => {
     onChangePage({
@@ -32,9 +37,9 @@ function Paging({
       return index + 2;
     }
     if (isEndPage) {
-      return (+totalPage - 4) + index;
+      return (totalPage - 4) + index;
     }
-    return (+page - 1) + index;
+    return (page - 1) + index;
   }
 
   const renderItem = (_: any, index: number) => {
@@ -50,14 +55,14 @@ function Paging({
       />;
   };
 
-  const getpageLength = () => {
+  const getPageLength = () => {
     let pageLength = 3;
     if (isLessPage) {
       pageLength = 5;
     } else if (isStartPage || isEndPage) {
       pageLength = 4;
     }
-    return Math.min(+totalPage - 2, pageLength);
+    return Math.min(totalPage - 2, pageLength);
   };
 
   return (
@@ -67,10 +72,7 @@ function Paging({
         className={twMerge(Theme.select)}
         value={size}
       >
-        <option>10</option>
-        <option>20</option>
-        <option>50</option>
-        <option>100</option>
+        {pagingSizeMaster.map((_) => <option key={_}>{_}</option>)}
       </select>
 
       <div className={twMerge(Theme.paging)}>
@@ -90,12 +92,12 @@ function Paging({
           {...{ loading }}
         />
         <Etc visible={!isLessPage && !isStartPage} />
-        {Array.from({ length: getpageLength() }, renderItem)}
+        {Array.from({ length: getPageLength() }, renderItem)}
         <Etc visible={!isLessPage && !isEndPage} />
         {(totalPage > 1) && (
           <Button
             onChangePage={handleChangePage}
-            active={+page === totalPage}
+            active={page === totalPage}
             page={totalPage}
             key="last"
             {...{ loading }}
@@ -103,7 +105,7 @@ function Paging({
         )}
         <button
           className={twMerge(Theme.button, loading && Theme.buttonLoading)}
-          disabled={loading || (+page === totalPage)}
+          disabled={loading || (page === totalPage)}
           onClick={() => handleChangePage({ page: page + 1 })}
           key="next"
         >

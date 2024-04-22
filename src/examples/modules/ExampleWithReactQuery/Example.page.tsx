@@ -53,7 +53,7 @@ export function ExampleWithReactQueryPage() {
         <ContentHeader title="Table Example With React Query">
           <ToggleDarkMode />
         </ContentHeader>
-        <ContentBody>
+        <ContentBody className="px-0">
           <InputSearchParams />
           <QueryState query={state.example}>
             <>

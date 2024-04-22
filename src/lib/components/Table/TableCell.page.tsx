@@ -53,10 +53,16 @@ export function TableCell<T>({
   } = useTableContext();
 
   const param = getParamKey(orderPrefix);
-  const activeSort = params?.[param.order] === order;
   const withSort = !!order;
   const isHead = parentelement === 'thead';
   const element = isHead ? 'th' : 'td';
+
+  const activeSort = params?.[param.order] === order;
+  const isInactiveDesc = !!params[param.sort] && params[param.sort] !== Sort.DESC;
+  const isInactiveAsc = !!params[param.sort] && params[param.sort] !== Sort.ASC;
+  const isInactiveAll = isInactiveDesc && isInactiveAsc;
+  const invisibleDesc = activeSort && !isInactiveAll && isInactiveDesc && 'invisible';
+  const invisibleAsc = activeSort && !isInactiveAll && isInactiveAsc && 'invisible';
 
   useEffect(() => {
     if (isHead && withSort) {
@@ -80,7 +86,7 @@ export function TableCell<T>({
       params,
       order
     });
-    updateParams(rollingSort!);
+    updateParams(rollingSort);
   };
 
   return createElement(element, {
@@ -119,8 +125,8 @@ export function TableCell<T>({
       </TableCellChildren>
       {(withSort) && (
         <span className="space-y-0.5 inline-block px-2">
-          <SortDescIcon className={twMerge(classNames?.icon, classNames?.descIcon, activeSort && !!params[param.sort] && params[param.sort] !== Sort.DESC && "invisible")} />
-          <SortAscIcon className={twMerge(classNames?.icon, classNames?.ascIcon, activeSort && !!params[param.sort] && params[param.sort] !== Sort.ASC && "invisible")} />
+          <SortDescIcon className={twMerge(classNames?.icon, classNames?.descIcon, invisibleDesc)} />
+          <SortAscIcon className={twMerge(classNames?.icon, classNames?.ascIcon, invisibleAsc)} />
         </span>
       )}
     </>

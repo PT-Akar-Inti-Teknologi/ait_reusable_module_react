@@ -44,6 +44,10 @@ export function getRollingSort<P extends Record<string, any>>({
       [param.sort]: rollingSort.value
     };
   }
+  return {
+    [param.sort]: Sort.ASC,
+    [param.order]: order
+  };
 }
 
 export function getParamKey(key?: string) {
