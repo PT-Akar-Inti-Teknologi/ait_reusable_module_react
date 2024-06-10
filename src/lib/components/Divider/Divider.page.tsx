@@ -8,9 +8,13 @@ import {
   DividerVariantMapping
 } from "./Divider.types";
 
-function Divider(props: Readonly<DividerProps>) {
+function Divider({
+  orientation = 'horizontal',
+  variant = 'solid',
+  ...props
+}: Readonly<DividerProps>) {
 
-  const borderOrientation = DividerOrientationMapping[props.orientation];
+  const borderOrientation = DividerOrientationMapping[orientation];
   const borderThickness = !props.thickness ? borderOrientation : `${borderOrientation}-${props.thickness}`;
 
   return (
@@ -18,17 +22,12 @@ function Divider(props: Readonly<DividerProps>) {
       className={twMerge(
         'border-gray-200',
         'dark:!border-gray-600',
-        DividerVariantMapping[props.variant],
+        DividerVariantMapping[variant],
         borderThickness,
         props.className
       )}
     />
   );
 }
-
-Divider.defaultProps = {
-  orientation: 'horizontal',
-  variant: 'solid'
-} as DividerProps;
 
 export { Divider }

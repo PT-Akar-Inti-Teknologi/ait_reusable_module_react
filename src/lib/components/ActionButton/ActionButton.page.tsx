@@ -34,12 +34,11 @@ const iconEl = {
 
 function ActionButton({
   className,
-  children,
   disabled,
   onClick,
   loading,
-  variant,
-  size,
+  variant = 'detail',
+  size = 'md',
   to,
   ...props
 }: Readonly<ActionButtonProps>) {
@@ -74,10 +73,5 @@ function ActionButton({
     </button>
   );
 }
-
-ActionButton.defaultProps = {
-  variant: 'detail',
-  size: 'md'
-} as ActionButtonProps;
 
 export { ActionButton }

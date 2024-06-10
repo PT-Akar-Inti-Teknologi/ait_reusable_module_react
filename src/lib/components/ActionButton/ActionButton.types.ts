@@ -11,8 +11,8 @@ export type ButtonVariantType = keyof typeof ButtonVariants;
 export type ButtonSizeType = keyof typeof ButtonSize;
 
 export interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: ButtonVariantType
+  variant?: ButtonVariantType
   loading?: boolean
-  size: ButtonSizeType
+  size?: ButtonSizeType
   to?: string
 }

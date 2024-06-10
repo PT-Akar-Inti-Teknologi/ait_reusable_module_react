@@ -28,6 +28,7 @@ function Paging({
     onChangePage({
       size,
       page,
+      total,
       ...data
     });
   };
@@ -42,7 +43,7 @@ function Paging({
     return (page - 1) + index;
   }
 
-  const renderItem = (_: any, index: number) => {
+  const renderItem = (_: unknown, index: number) => {
     const currentPage = getLabelPage(index);
     return (!page) ?
       null :
@@ -152,11 +153,5 @@ function Etc(props: { visible: boolean }) {
     <span className={twMerge(Theme.separator)}>...</span>
   ) : null;
 }
-
-Paging.defaultProps = {
-  size: 10,
-  total: 0,
-  page: 1
-} as PagingProps;
 
 export { Paging }

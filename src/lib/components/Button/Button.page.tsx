@@ -32,10 +32,10 @@ function Button({
   onClick,
   endIcon,
   loading,
-  variant,
-  color,
+  variant = 'contained',
+  color = 'primary',
   pill,
-  size,
+  size = 'md',
   to,
   ...props
 }: Readonly<ButtonProps>) {
@@ -68,7 +68,7 @@ function Button({
       )}
       {...props}
     >
-      {(!!loading) ? createElement(LoadingIcon, {
+      {(loading) ? createElement(LoadingIcon, {
         className: twMerge(
           Theme.loadingIcon,
           IconSize[size],
@@ -83,7 +83,7 @@ function Button({
         )
       })}
       {children}
-      {(!!endIcon) && createElement(endIcon, {
+      {(endIcon) && createElement(endIcon, {
         className: twMerge(
           Theme.endIcon,
           IconSize[size],
@@ -93,11 +93,5 @@ function Button({
     </button>
   );
 }
-
-Button.defaultProps = {
-  variant: 'contained',
-  color: 'primary',
-  size: 'md'
-} as ButtonProps;
 
 export { Button }

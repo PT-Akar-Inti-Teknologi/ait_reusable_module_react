@@ -23,8 +23,8 @@ export function PagingQuery() {
     <Paging
       onChangePage={handleChangePage}
       loading={isFetching || isLoading}
-      total={data?.pagination?.total}
-      size={data?.pagination?.size}
+      total={data?.pagination?.total || 0}
+      size={data?.pagination?.size || 1}
       page={+(searchParams.page ?? 1)}
     />
   );

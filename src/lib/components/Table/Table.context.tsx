@@ -3,25 +3,27 @@ import {
   useContext,
   useEffect,
   useImperativeHandle,
-  useState
-} from "react";
+  useState,
+} from 'react';
 
 import {
   TableContextValue,
   TableContextValueParams,
-  TableProviderProps
-} from "./Table.types";
+  TableProviderProps,
+} from './Table.types';
 
 const initParams: TableContextValueParams = {};
 const initValue: TableContextValue = {
-  setInitParams: () => { },
-  updateParams: () => { },
-  params: initParams
-}
+  setInitParams: () => {},
+  updateParams: () => {},
+  params: initParams,
+};
 const TableContext = createContext(initValue);
 
-function TableProvider(props: Readonly<TableProviderProps>) {
-
+function TableProvider({
+  onUpdateParams = () => {},
+  ...props
+}: Readonly<TableProviderProps>) {
   const [params, setParams] = useState<TableContextValueParams>(initParams);
 
   // const debounceInitParams = useRef<number>();
@@ -32,7 +34,7 @@ function TableProvider(props: Readonly<TableProviderProps>) {
     }
   }, [JSON.stringify(props.params)]);
 
-  const setInitParams = (_: TableContextValueParams) => {
+  const setInitParams = () => {
     // clearTimeout(debounceInitParams.current);
     // Object.assign(params, newParams);
     // debounceInitParams.current = setTimeout(() => {
@@ -42,19 +44,23 @@ function TableProvider(props: Readonly<TableProviderProps>) {
 
   const updateParams = (newParams: TableContextValueParams) => {
     Object.assign(params, newParams);
-    props.onUpdateParams(params);
+    onUpdateParams(params);
     setParams({ ...params });
   };
 
-  useImperativeHandle(props.forwardedRef, () => ({
-    setInitParams,
-    updateParams
-  }), []);
+  useImperativeHandle(
+    props.forwardedRef,
+    () => ({
+      setInitParams,
+      updateParams,
+    }),
+    []
+  );
 
   const value: TableContextValue = {
     setInitParams,
     updateParams,
-    params
+    params,
   };
 
   return (
@@ -64,11 +70,7 @@ function TableProvider(props: Readonly<TableProviderProps>) {
   );
 }
 
-TableProvider.defaultProps = {
-  onUpdateParams: (_) => { }
-} as TableProviderProps;
-
-export { TableProvider }
+export { TableProvider };
 
 export function useTableContext() {
   const context = useContext(TableContext);

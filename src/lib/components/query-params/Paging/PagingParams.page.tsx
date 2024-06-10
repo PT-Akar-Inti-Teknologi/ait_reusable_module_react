@@ -10,14 +10,10 @@ function PagingParams(props: Readonly<PagingParamsProps>) {
     <Paging
       {...props}
       onChangePage={state.handleChangePage}
-      size={state.params.size}
-      page={state.params.page}
+      size={state.params.size ?? 0}
+      page={state.params.page ?? 1}
     />
   );
 }
-
-PagingParams.defaultProps = {
-  total: 0
-} as PagingParamsProps;
 
 export { PagingParams }
