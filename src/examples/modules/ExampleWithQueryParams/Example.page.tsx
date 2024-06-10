@@ -45,7 +45,7 @@ export function ExampleWithQueryParamsPage() {
             </TableHead>
             <TableBodyComponent />
           </TableParams>
-          <PagingParams total={100} />
+          <PagingParams total={100} size={0} />
         </ContentBody>
       </Content>
     </Wrapper>
@@ -56,7 +56,7 @@ function TableBodyComponent() {
 
   const [searchParams] = useUrlSearchParams<'size'>({ size: '10' });
 
-  const renderTableItem = (_: any, index: number) => {
+  const renderTableItem = (_: typeof searchParams, index: number) => {
     return (
       <TableRow key={index}>
         <TableCell {...{ index }} />
