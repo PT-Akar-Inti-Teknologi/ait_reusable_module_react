@@ -59,7 +59,6 @@ export function MobileAppListPage() {
 
   // Function to fetch data
   const fetchData = async () => {
-    console.log(params)
     setLoading(true);
     try {
       const response = await getAllVersion(params)
@@ -88,8 +87,8 @@ export function MobileAppListPage() {
         <TableCell>{versionData.version}</TableCell>
         <TableCell>{versionData.type}</TableCell>
         <TableCell action={true}>
-          <ActionButton to="./detail" variant="detail" />
-          <ActionButton to="./edit" variant="edit" />
+          <ActionButton to={"./detail/"+versionData.platform+"/"+versionData.version} variant="detail" />
+          <ActionButton to={"./edit/"+versionData.platform+"/"+versionData.version} variant="edit" />
           <ActionButton variant="delete" />
         </TableCell>
       </TableRow>

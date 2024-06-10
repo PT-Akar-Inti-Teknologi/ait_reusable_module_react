@@ -5,10 +5,18 @@ export interface VersionParams {
   page?: string;
   size?: string;
 }
-
 export interface VersionModel {
-  id: number;
+  id: number | null;
   version: string;
   platform: string;
   type: string;
+}
+
+export interface VersionPayload {
+  appVersions: VersionModel[];
+}
+
+export interface VersionDetailParam {
+  version: string;
+  platform: string;
 }
