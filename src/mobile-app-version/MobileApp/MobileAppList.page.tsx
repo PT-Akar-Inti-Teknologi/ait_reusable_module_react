@@ -21,7 +21,7 @@ import {
 } from '~/components/query-params';
 import { useUrlSearchParams } from '~/hooks';
 import { VersionModel, VersionParams } from './MobileApp.types';
-import { getAllVersion } from './MobileApp.service';
+import { deleteVersion, getAllVersion } from './MobileApp.service';
 import { ResponseList } from '~/models';
 
 export function MobileAppListPage() {
@@ -57,6 +57,22 @@ export function MobileAppListPage() {
     size: pageSize,
   };
 
+  // function delete data
+  const deleteData = async (ids: string) => {
+    setLoading(true);
+    try {
+      const response = await deleteVersion(ids)
+      if(response.status == 200) {
+        fetchData();
+      }
+      setError(null);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   // Function to fetch data
   const fetchData = async () => {
     setLoading(true);
@@ -69,7 +85,6 @@ export function MobileAppListPage() {
     } catch (err) {
       setError(err);
     } finally {
-
       setLoading(false);
     }
   };
@@ -89,7 +104,7 @@ export function MobileAppListPage() {
         <TableCell action={true}>
           <ActionButton to={"./detail/"+versionData.platform+"/"+versionData.version} variant="detail" />
           <ActionButton to={"./edit/"+versionData.platform+"/"+versionData.version} variant="edit" />
-          <ActionButton variant="delete" />
+          <ActionButton variant="delete" onClick={() => deleteData(versionData.id?.toString() ?? "")}/>
         </TableCell>
       </TableRow>
     );

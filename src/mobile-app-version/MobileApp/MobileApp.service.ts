@@ -18,3 +18,7 @@ export function getVersionDetail(params: VersionDetailParam, signal?: AbortSigna
 export const postVersion = (payload?: VersionPayload) => {
   return axios.post<BaseResponse<Response<VersionModel>>>(`${URL_EXAMPLE}/app-version/save`,payload)
 }
+
+export const deleteVersion = (id?: string) => {
+  return axios.delete<BaseResponse<Response<string>>>(`${URL_EXAMPLE}/app-version/delete?ids=${id}`)
+}
