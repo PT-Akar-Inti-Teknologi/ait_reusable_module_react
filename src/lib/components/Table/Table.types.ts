@@ -26,7 +26,7 @@ export interface TableContextValue {
 }
 
 export interface TableProviderProps {
-  onUpdateParams: (params: TableContextValueParams) => void;
+  onUpdateParams?: (params: TableContextValueParams) => void;
   forwardedRef: Ref<TableRef>;
   children: ReactNode;
   params?: TableContextValueParams;

@@ -31,9 +31,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   endIcon?: ComponentType<SVGProps<SVGSVGElement>>
   classNames?: ButtonClassNames
   loading?: boolean
-  variant: ButtonVariantType
-  color: ButtonColorType
-  size: ButtonSizeType
+  variant?: ButtonVariantType
+  color?: ButtonColorType
+  size?: ButtonSizeType
   pill?: boolean
   to?: string
 }

@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 
 export interface PagingParams {
+  total: number
   size: number;
   page: number;
 }

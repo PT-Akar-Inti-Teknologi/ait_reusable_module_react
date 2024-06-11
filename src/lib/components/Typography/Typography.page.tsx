@@ -21,7 +21,7 @@ function getTypographyEl(variant: TypographyVariantType) {
 }
 
 function Typography({
-  variant,
+  variant = 'body1',
   type,
   ...props
 }: TypographyProps) {
@@ -36,9 +36,5 @@ function Typography({
     )
   });
 }
-
-Typography.defaultProps = {
-  variant: 'body1'
-} as TypographyProps;
 
 export { Typography }

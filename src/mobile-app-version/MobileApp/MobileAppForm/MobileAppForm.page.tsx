@@ -22,9 +22,10 @@ import {
 import {
   MobileAppFormProps
 } from "./MobileAppForm.types";
+import { useParams } from "react-router-dom";
 
 export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
-
+  const { platform, version } = useParams();
   const state = useMobileAppFormHook();
 
   return (
@@ -45,12 +46,13 @@ export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
                 <InputTextField
                   placeholder="Enter version number"
                   name="version_number"
+                  value={version || ''}
                 />
               </ControlLabel>
               <ControlLabel required={true} label="Type" >
                 <InputRadioGroup name="type">
-                  <Radio label="Soft Update" value="soft_update" />
-                  <Radio label="Force Update" value="force_update" />
+                  <Radio label="Soft Update" value="SOFT_UPDATE" />
+                  <Radio label="Force Update" value="FORCE_UPDATE" />
                 </InputRadioGroup>
               </ControlLabel>
             </ContentBody>

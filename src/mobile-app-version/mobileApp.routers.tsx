@@ -16,11 +16,11 @@ export const MobileAppRoutes: RouteObject[] = [
   },
   {
     element: <MobileAppDetailPage />,
-    path: 'detail'
+    path: 'detail/:platform/:version'
   },
   {
     element: <MobileAppEditPage />,
-    path: 'edit'
+    path: 'edit/:platform/:version'
   },
 ];
 
