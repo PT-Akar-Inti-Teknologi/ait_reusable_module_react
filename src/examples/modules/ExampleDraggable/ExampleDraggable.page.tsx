@@ -9,6 +9,11 @@ import {
     Content,
     ContentBody,
     ContentHeader,
+    DraggableTable,
+    DraggableTableBody,
+    DraggableTableRow,
+    HandleDragRow,
+    RenderTableRowParams,
     TableCell,
     TableHead,
     TableRow,
@@ -24,10 +29,6 @@ import {
   import {
     ExampleDraggableModel
   } from "./ExampleDraggable.types";
-  import { DraggableTableRow } from "~/components/Table/DraggableTableRow.page";
-  import { DraggableTable, HandleDragRow } from "~/components/Table/DraggableTable.page";
-  import { DraggableTableBody } from "~/components/Table/DraggableTableBody.page";
-  import { RenderTableRowParams } from "~/components/Table/DraggableTableBody.types";
   
   export function ExampleDraggable() {
   
