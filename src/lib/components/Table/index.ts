@@ -10,3 +10,8 @@ export * from './TableCell.types';
 export * from './TableCell.utils';
 
 export * from './Table.context';
+
+export * from './DraggableTableRow.page';
+export * from './DraggableTable.page';
+export * from './DraggableTableBody.page';
+export * from './DraggableTableBody.types';
