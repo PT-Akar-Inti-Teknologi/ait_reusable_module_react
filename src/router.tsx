@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 
 import {
+  ExampleDraggable,
   ExamplePage,
   ExampleWithQueryParamsPage,
   ExampleWithReactQueryPage
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     element: <ExampleWithReactQueryPage />,
     path: '/'
+  },
+  {
+    element: <ExampleDraggable />,
+    path: '/example-draggable'
   },
 ]);
 
