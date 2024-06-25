@@ -40,7 +40,7 @@ export function MobileAppListPage() {
   );
   const order = useMemo(
     () =>
-      ['first_name', 'last_name', 'username', 'email'].find(
+      ['platform', 'version', 'type'].find(
         (_) => _ === searchParams.order
       ),
     [searchParams.order]
@@ -128,7 +128,7 @@ export function MobileAppListPage() {
               <TableRow>
                 <TableCell index={true} />
                 <TableCell order="platform">Platform</TableCell>
-                <TableCell order="version_number">Version Number</TableCell>
+                <TableCell order="version">Version Number</TableCell>
                 <TableCell order="type">Type</TableCell>
                 <TableCell className="w-[160px]" action={true} />
               </TableRow>
