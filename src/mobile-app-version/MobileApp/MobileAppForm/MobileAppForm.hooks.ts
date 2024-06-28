@@ -26,11 +26,20 @@ export function useMobileAppFormHook() {
 
   const handleSubmit = form.handleSubmit(
     (payload: any) => {
-      console.log('🚀 ~ handleSubmit ~ payload:', payload);
+      console.log('🚀 ~ handleSubmit CREATE ~ payload:', payload);
       handleAddVersion(payload);
     },
     (error) => {
-      console.log('🚀 ~ handleSubmit ~ error:', error);
+      console.log('🚀 ~ handleSubmit CREATE ~ error:', error);
+    }
+  );
+
+  const handleSubmitEdit = form.handleSubmit(
+    (payload: any) => {
+      console.log('🚀 ~ handleSubmit EDIT ~ payload:', payload);
+    },
+    (error) => {
+      console.log('🚀 ~ handleSubmit EDIT ~ error:', error);
     }
   );
 
@@ -61,7 +70,7 @@ export function useMobileAppFormHook() {
   };
 
   return {
-    action: { handleSubmit },
+    action: { handleSubmit, handleSubmitEdit },
     platformMaster,
     form,
   };
