@@ -46,7 +46,6 @@ export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
                 <InputTextField
                   placeholder="Enter version number"
                   name="version_number"
-                  value={version || ''}
                 />
               </ControlLabel>
               <ControlLabel required={true} label="Type" >
@@ -58,7 +57,7 @@ export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
             </ContentBody>
             <ContentAction>
               <Button />
-              <Button onClick={state.action.handleSubmit} />
+              <Button onClick={platform && version ? state.action.handleSubmitEdit : state.action.handleSubmit } />
             </ContentAction>
           </>
         </HookFormProvider>
