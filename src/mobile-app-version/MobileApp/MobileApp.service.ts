@@ -23,6 +23,10 @@ export const postVersion = (payload?: VersionPayload) => {
   return axios.post<BaseResponse<Response<VersionModel>>>(`${URL_EXAMPLE}/app-version/save`,payload)
 }
 
+export const updateVersion = (id: string, payload?: VersionModel) => {
+  return axios.put<BaseResponse<Response<VersionModel>>>(`${URL_EXAMPLE}/app-version/update/${id}`,payload)
+}
+
 export const deleteVersion = (id?: string) => {
   return axios.delete<BaseResponse<Response<string>>>(`${URL_EXAMPLE}/app-version/delete?ids=${id}`)
 }

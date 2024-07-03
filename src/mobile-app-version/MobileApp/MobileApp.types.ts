@@ -6,7 +6,7 @@ export interface VersionParams {
   size?: string;
 }
 export interface VersionModel {
-  id: number | null;
+  id?: number | null;
   version: string;
   platform: string;
   type: string;
