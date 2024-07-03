@@ -102,8 +102,8 @@ export function MobileAppListPage() {
         <TableCell>{versionData.version}</TableCell>
         <TableCell>{versionData.type}</TableCell>
         <TableCell action={true}>
-          <ActionButton to={"./detail/"+versionData.platform+"/"+versionData.version} variant="detail" />
-          <ActionButton to={"./edit/"+versionData.platform+"/"+versionData.version} variant="edit" />
+          <ActionButton to={"./detail/"+versionData.id} variant="detail" />
+          <ActionButton to={"./edit/"+versionData.id} variant="edit" />
           <ActionButton variant="delete" onClick={() => deleteData(versionData.id?.toString() ?? "")}/>
         </TableCell>
       </TableRow>

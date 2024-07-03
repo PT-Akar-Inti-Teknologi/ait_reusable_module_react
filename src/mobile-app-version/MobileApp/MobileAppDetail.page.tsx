@@ -10,22 +10,21 @@ import {
   ContentHeader,
   LabelItem,
 } from "~/components";
-import { getVersionDetail } from "./MobileApp.service";
-import { VersionDetailParam } from "./MobileApp.types";
+import { getDetail } from "./MobileApp.service";
 
 export function MobileAppDetailPage() {
-  const { platform, version } = useParams();
+  const { id } = useParams();
+  const [ version, setVersion ] = useState<string>("")
+  const [ platform, setPlatform ] = useState<string>("")
   const [ type, setType ] = useState<string>("")
 
   // Function to fetch data
   const fetchData = async () => {
-    const params: VersionDetailParam = {
-      platform: platform || '',
-      version: version || ''
-    }
     try {
-      const response = await getVersionDetail(params)
-      if (response.data.response_output?.detail?.type) {
+      const response = await getDetail(id || "1")
+      if (response.data.response_output?.detail) {
+        setVersion(response.data.response_output?.detail?.version)
+        setPlatform(response.data.response_output?.detail?.platform)
         setType(response.data.response_output?.detail?.type);
       }
     } catch (err) {
