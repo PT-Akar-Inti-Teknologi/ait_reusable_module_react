@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { VersionPayload } from '../MobileApp.types';
-import { postVersion } from '../MobileApp.service';
-import { useNavigate } from 'react-router-dom';
+import { getDetail, postVersion } from '../MobileApp.service';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const platformMaster = [
   {
@@ -19,10 +20,28 @@ const platformMaster = [
 ];
 
 export function useMobileAppFormHook() {
+  const { id } = useParams();
   const navigate = useNavigate()
   const form = useForm();
-  const tes = form.watch('version_number');
-  // console.log("🚀 ~ useMobileAppFormHook ~ tes:", tes)
+
+  // Function to fetch data
+  const fetchData = async () => {
+
+    try {
+      const response = await getDetail(id ?? '1')
+      if (response.data.response_output?.detail?.type) {
+        const detailData = response.data.response_output?.detail
+        const result = platformMaster.find(platform => platform.value === detailData.platform);
+        form.setValue('platform', result)
+        form.setValue('version_number', detailData.version)
+        form.setValue('type', detailData.type)
+      }
+    } catch (err) {
+      console.log(err)
+    } finally {
+      console.log()
+    }
+  };
 
   const handleSubmit = form.handleSubmit(
     (payload: any) => {
@@ -68,6 +87,13 @@ export function useMobileAppFormHook() {
       console.log();
     }
   };
+
+    // useEffect to call the API whenever params change
+    useEffect(() => {
+      if(id){
+        fetchData();
+      }
+    }, []);
 
   return {
     action: { handleSubmit, handleSubmitEdit },

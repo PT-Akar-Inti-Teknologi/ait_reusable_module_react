@@ -25,7 +25,7 @@ import {
 import { useParams } from "react-router-dom";
 
 export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
-  const { platform, version } = useParams();
+  const { id } = useParams();
   const state = useMobileAppFormHook();
 
   return (
@@ -57,7 +57,7 @@ export function MobileAppFormPage(props: Readonly<MobileAppFormProps>) {
             </ContentBody>
             <ContentAction>
               <Button />
-              <Button onClick={platform && version ? state.action.handleSubmitEdit : state.action.handleSubmit } />
+              <Button onClick={id ? state.action.handleSubmitEdit : state.action.handleSubmit } />
             </ContentAction>
           </>
         </HookFormProvider>

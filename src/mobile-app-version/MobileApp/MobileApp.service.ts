@@ -15,6 +15,10 @@ export function getVersionDetail(params: VersionDetailParam, signal?: AbortSigna
   return axios.get<BaseResponse<Response<VersionModel>>>(`${URL_EXAMPLE}/app-version/detail?`, { params, signal });
 }
 
+export function getDetail(id: string) {
+  return axios.get<BaseResponse<Response<VersionModel>>>(`${URL_EXAMPLE}/app-version/${id}`);
+}
+
 export const postVersion = (payload?: VersionPayload) => {
   return axios.post<BaseResponse<Response<VersionModel>>>(`${URL_EXAMPLE}/app-version/save`,payload)
 }
