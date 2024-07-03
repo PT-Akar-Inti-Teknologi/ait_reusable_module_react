@@ -32,7 +32,7 @@ export function InputRadioGroup({
   const fieldState = form.getFieldState(name);
   const value = form.watch(name)?.toString();
   // bypass boolean value
-  const isInputRequired = !!rule?.required ? !value : false;
+  const isInputRequired = rule?.required ? !value : false;
   const error = form.formState.errors;
 
   const errorMessage = rule?.required === true
