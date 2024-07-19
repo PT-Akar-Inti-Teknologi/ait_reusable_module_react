@@ -6,30 +6,31 @@ import {
   ExampleDraggable,
   ExamplePage,
   ExampleWithQueryParamsPage,
-  ExampleWithReactQueryPage
+  ExampleWithReactQueryPage,
 } from "./examples/modules";
-
+import { ExampleCMSBannerRouter } from "./examples/modules/ExampleCMSBanner/ExampleCMSBanner.routers";
 import { MobileAppRouter } from "./mobile-app-version/mobileApp.routers";
 
 const router = createBrowserRouter([
-  MobileAppRouter,
+    MobileAppRouter,
+    ExampleCMSBannerRouter,
 
-  {
-    element: <ExamplePage />,
-    path: '/common-usage'
-  },
-  {
-    element: <ExampleWithQueryParamsPage />,
-    path: '/example-with-query-params'
-  },
-  {
-    element: <ExampleWithReactQueryPage />,
-    path: '/'
-  },
-  {
-    element: <ExampleDraggable />,
-    path: '/example-draggable'
-  },
+    {
+        element: <ExamplePage/>,
+        path: '/common-usage'
+    },
+    {
+        element: <ExampleWithQueryParamsPage/>,
+        path: '/example-with-query-params'
+    },
+    {
+        element: <ExampleWithReactQueryPage/>,
+        path: '/'
+    },
+    {
+        element: <ExampleDraggable/>,
+        path: '/example-draggable'
+    },
 ]);
 
 export default router;

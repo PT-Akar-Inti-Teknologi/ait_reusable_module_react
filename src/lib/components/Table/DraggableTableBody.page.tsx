@@ -1,4 +1,8 @@
 import {
+  DragEndEvent,
+  useDndMonitor
+} from "@dnd-kit/core";
+import {
   SortableContext,
   arrayMove,
   verticalListSortingStrategy
@@ -7,24 +11,20 @@ import {
   createElement,
   isValidElement
 } from "react";
-import {
-  DragEndEvent,
-  useDndMonitor
-} from "@dnd-kit/core";
 
-import {
-  TableBody
-} from "./TableBody.page";
 import {
   DraggableTableBodyProps
 } from "./DraggableTableBody.types";
+import {
+  TableBody
+} from "./TableBody.page";
 
 function DraggableTableBody<T>({
-  keyExtractor,
+  keyExtractor = (_: any) => _?.id,
   renderItem,
   children,
-  onReorder,
-  data,
+  onReorder = (_) => { },
+  data = [],
   ...props
 }: DraggableTableBodyProps<T>) {
 
@@ -41,7 +41,7 @@ function DraggableTableBody<T>({
     onDragEnd: handleDragEnd
   });
 
-  const renderDataItem = (item: any, index: number) => {
+  const renderDataItem = (item: T, index: number) => {
     const key = keyExtractor(item, index);
     const element = renderItem({ item, index, key });
     if (isValidElement(element)) {
@@ -49,8 +49,6 @@ function DraggableTableBody<T>({
     }
     return null;
   };
-
-  // const _data = safeArray(data);
 
   return (
     <TableBody className="bg-opacity-10 bg-primary-600" {...props}>
@@ -63,11 +61,5 @@ function DraggableTableBody<T>({
     </TableBody>
   );
 }
-
-DraggableTableBody.defaultProps = {
-  keyExtractor: (_: any) => _?.id,
-  onReorder: (_) => { },
-  data: [] as any[]
-} as DraggableTableBodyProps<any>
 
 export { DraggableTableBody };
