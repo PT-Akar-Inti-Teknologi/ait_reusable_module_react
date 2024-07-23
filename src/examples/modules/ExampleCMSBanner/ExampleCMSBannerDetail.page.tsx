@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import {
     Wrapper
 } from "src/examples/components";
@@ -9,31 +7,10 @@ import {
     ContentAction,
     ContentHeader, Label,
 } from "~/components";
-import { getDetailCMSBanner } from "./ExampleCMSBanner.service";
+import { useExampleCMSBannerHook } from "./ExampleCMSBanner.hooks";
 
 export function ExampleCMSBannerDetailPage() {
-    const {id} = useParams();
-    const [detail, setDetail] = useState<{ [key: string]: any }>({});
-
-    // Function to fetch data
-    const fetchData = async () => {
-        try {
-            const response = await getDetailCMSBanner(id || "1")
-            if (response.data.response_output?.detail) {
-                setDetail(response.data.response_output.detail);
-            }
-        } catch (err) {
-            console.log(err)
-        } finally {
-            console.log()
-        }
-    };
-
-    // useEffect to call the API whenever params change
-    useEffect(() => {
-        fetchData();
-    }, []);
-
+    const state = useExampleCMSBannerHook();
     function formatterLabel(value: string) {
         return value
             .split('_')
@@ -79,7 +56,7 @@ export function ExampleCMSBannerDetailPage() {
                 <ContentHeader title="Detail Banner"/>
                 <div className="px-6">
                     {/* loop the label item */}
-                    {Object.entries(detail).map(([key, value]) => (
+                    {Object.entries(state.state.detail).map(([key, value]) => (
                         <div className="grid grid-cols-3 my-2">
                             <Label>{key === 'is_active' ? "Status" : formatterLabel(key)}</Label>
                             {renderLabel(key, value)}
