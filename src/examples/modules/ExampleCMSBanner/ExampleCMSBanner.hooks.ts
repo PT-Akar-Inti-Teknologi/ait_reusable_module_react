@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import notify from "~/utils/toast.ts";
 import { useGetExample } from "./ExampleCMSBanner.providers.ts";
-import { deleteCMSBanner, reorderIndexCMSBanner } from "./ExampleCMSBanner.service.ts";
+import { deleteCMSBanner, getDetailCMSBanner, reorderIndexCMSBanner } from "./ExampleCMSBanner.service.ts";
 import { ExampleCMSBannerModel, reorderCMSBannerPayload } from "./ExampleCMSBanner.types.ts";
 
 export function useExampleCMSBannerHook() {
@@ -9,10 +10,28 @@ export function useExampleCMSBannerHook() {
     const [isDeleting, setIsDeleting] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const {id} = useParams();
+    const [detail, setDetail] = useState<{ [key: string]: any }>({});
 
     const exampleCMSBanner = useGetExample();
 
+
+    // Function to fetch data
+    const fetchData = async () => {
+        try {
+            const response = await getDetailCMSBanner(id || "1")
+            if (response.data.response_output?.detail) {
+                setDetail(response.data.response_output.detail);
+            }
+        } catch (err) {
+            console.log(err)
+        } finally {
+            console.log();
+        }
+    };
+
     useEffect(() => {
+        fetchData();
         if (exampleCMSBanner.isSuccess) {
             setDraft(exampleCMSBanner.data?.content!);
         }
@@ -92,7 +111,8 @@ export function useExampleCMSBannerHook() {
             draft,
             wasChanged,
             isDeleting,
-            isModalOpen
+            isModalOpen,
+            detail
         },
     };
 }
