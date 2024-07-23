@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -24,76 +23,23 @@ import {
     QueryState,
 } from "~/components/react-query";
 import { ResponseList } from "~/models";
-import notify from "~/utils/toast.ts";
 import {
     Wrapper
 } from "../../components";
 import {
     useExampleCMSBannerHook
 } from "./ExampleCMSBanner.hooks";
-import { deleteCMSBanner, reorderIndexCMSBanner } from "./ExampleCMSBanner.service.ts";
 import {
-    ExampleCMSBannerModel, reorderCMSBannerPayload
+    ExampleCMSBannerModel
 } from "./ExampleCMSBanner.types";
 
 export function ExampleCMSBanner() {
 
     const state = useExampleCMSBannerHook();
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [deleteId, setDeleteId] = useState<string | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleReOrderDraft = (data: ExampleCMSBannerModel[]) => {
-        const draft = data.map((_) => ({..._, id: _.id}));
-        state.action.setDraft(draft);
-        const result = generateReorderIndex(data);
-        handleReorderIndex(result);
-    };
-
-    function generateReorderIndex(data: ExampleCMSBannerModel[]): reorderCMSBannerPayload[] {
-        return data.map((item, index) => {
-            return {
-                id: item.id,
-                index: index.toString()
-            };
-        });
-    }
 
     const confirmDelete = (id: string) => {
-        setDeleteId(id);
-        setIsModalOpen(true);
-    };
-
-    // function reorder index banner
-    const handleReorderIndex = async (data: reorderCMSBannerPayload[]) => {
-        try {
-            const response = await reorderIndexCMSBanner(data)
-            if (response.status === 200) {
-                notify('Data berhasil diurutkan', 'success');
-                state.action.refetch();
-            }
-        } catch (err) {
-            notify('Data gagal diurutkan', 'error');
-        }
-    }
-    // function delete data
-    const handleDelete = async () => {
-        if (!deleteId) return;
-
-        setIsDeleting(true);
-        setIsModalOpen(false);
-        try {
-            const response = await deleteCMSBanner(deleteId);
-            if (response.status === 200) {
-                notify('Data berhasil dihapus', 'success');
-                state.action.refetch();
-            }
-        } catch (err) {
-            notify('Data gagal dihapus', 'error');
-        } finally {
-            setIsDeleting(false);
-            setDeleteId(null);
-        }
+        state.action.setDeleteId(id);
+        state.action.setIsModalOpen(true);
     };
 
     const renderTableItem = ({item, key}: RenderTableRowParams<ExampleCMSBannerModel>) => {
@@ -168,19 +114,19 @@ export function ExampleCMSBanner() {
                                     <TableCell className="w-[160px]" action={true}></TableCell>
                                 </TableRow>
                             </TableHead>
-                            <DraggableTableBody keyExtractor={(_) => _.id!} onReorder={handleReOrderDraft}
+                            <DraggableTableBody keyExtractor={(_) => _.id!} onReorder={state.action.handleReOrderDraft}
                                                 renderItem={renderTableItem} data={state.state.draft}/>
                         </DraggableTable>
                     </QueryState>
                     <PagingParams total={state.exampleCMSBanner.data?.pagination?.total || 0} size={10}/>
                 </ContentBody>
             </Content>
-            {isDeleting && <div
+            {state.state.isDeleting && <div
                 className="fixed inset-0 z-50 flex items-center justify-center p-4 text-white bg-black bg-opacity-75 rounded-lg">Deleting...</div>}
             <ModalComponent
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-                onConfirm={handleDelete}
+                isOpen={state.state.isModalOpen}
+                onRequestClose={() => state.action.setIsModalOpen(false)}
+                onConfirm={state.action.handleDelete}
                 title="Confirm Delete"
                 message="Are you sure you want to delete this item?"
                 confirmText="Yes"

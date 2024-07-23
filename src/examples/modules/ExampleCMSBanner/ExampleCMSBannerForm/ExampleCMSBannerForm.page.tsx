@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactCrop, {
     Crop,
     PixelCrop,
@@ -22,7 +22,6 @@ import {
 import { HookFormProvider, InputRadioGroup, InputTextField } from "~/components/hook-form";
 import { canvasPreview } from "~/utils/canvasPreview.ts";
 import { useDebounceEffect } from "~/utils/useDebounceEffect.ts";
-import { getDetailCMSBanner } from "../ExampleCMSBanner.service.ts";
 import {
     useCMSBannerFormHook
 } from "./ExampleCMSBannerForm.hooks";
@@ -36,7 +35,6 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
     const [imgSrc, setImgSrc] = useState('')
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
     const imgRef = useRef<HTMLImageElement>(null)
-    // const hiddenAnchorRef = useRef<HTMLAnchorElement>(null)
     const blobUrlRef = useRef('')
     const [crop, setCrop] = useState<Crop>()
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
@@ -44,27 +42,6 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
     const [rotate] = useState(0)
     const [aspect] = useState(16 / 9)
     const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
-    const [detail, setDetail] = useState<{ [key: string]: any }>({});
-
-    // Function to fetch data
-    const fetchData = async () => {
-        try {
-            const response = await getDetailCMSBanner(id || "1")
-            if (response.data.response_output?.detail) {
-                setDetail(response.data.response_output.detail);
-                state.form.setValue('status', response.data.response_output.detail.is_active ? 'active' : 'inactive')
-            }
-        } catch (err) {
-            console.log(err)
-        } finally {
-            console.log()
-        }
-    };
-
-    // useEffect to call the API whenever params change
-    useEffect(() => {
-        if (id) fetchData();
-    }, []);
 
     function centerAspectCrop(
         mediaWidth: number,
@@ -155,7 +132,7 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
         setCroppedImageUrl(blobUrlRef.current);
 
         // insert file to form
-        state.form.setValue('cropped_file', file);
+        state.state.form.setValue('cropped_file', file);
     }
 
     useDebounceEffect(
@@ -184,7 +161,7 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
         <Wrapper>
             <Content>
                 <ContentHeader title={props.title}/>
-                <HookFormProvider form={state.form}>
+                <HookFormProvider form={state.state.form}>
                     <>
                         <ContentBody>
                             <ControlLabel required={true} label="Status">
@@ -226,9 +203,9 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
                                     allowedExtensions={['image/jpg', 'image/jpeg', 'image/png']}
                                 />
                             </ControlLabel>
-                            {detail.image_file && !croppedImageUrl && (
+                            {state.state.detail.image_file && !croppedImageUrl && (
                                 <div className="flex justify-end">
-                                    <img src={detail.image_file} className="w-2/3 aspect-video" alt=""/>
+                                    <img src={state.state.detail.image_file} className="w-2/3 aspect-video" alt=""/>
                                 </div>
                             )}
                             {croppedImageUrl ? (

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import notify from "~/utils/toast.ts";
@@ -9,6 +9,7 @@ export function useCMSBannerFormHook() {
     const {id} = useParams();
     const navigate = useNavigate();
     const form = useForm();
+    const [detail, setDetail] = useState<{ [key: string]: any }>({});
 
     const fetchData = async () => {
         try {
@@ -20,6 +21,8 @@ export function useCMSBannerFormHook() {
                 form.setValue('deeplink', detailData.deeplink);
                 form.setValue('index', detailData.index);
                 form.setValue('cropped_file', detailData.image_file);
+                setDetail(response.data.response_output.detail);
+                form.setValue('status', response.data.response_output.detail.is_active ? 'active' : 'inactive')
             }
         } catch (err) {
             console.log(err);
@@ -99,8 +102,11 @@ export function useCMSBannerFormHook() {
     }, []);
 
     return {
-        action: {handleSubmit, handleSubmitEdit},
-        form,
+        action: {handleSubmit, handleSubmitEdit, setDetail},
+        state : {
+            form,
+            detail
+        }
     };
 }
 
