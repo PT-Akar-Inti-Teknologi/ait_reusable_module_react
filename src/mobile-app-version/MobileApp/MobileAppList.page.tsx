@@ -20,15 +20,15 @@ import {
   TableParams,
 } from '~/components/query-params';
 import { useUrlSearchParams } from '~/hooks';
-import { VersionModel, VersionParams } from './MobileApp.types';
-import { deleteVersion, getAllVersion } from './MobileApp.service';
 import { ResponseList } from '~/models';
+import { deleteVersion, getAllVersion } from './MobileApp.service';
+import { VersionModel, VersionParams } from './MobileApp.types';
 
 export function MobileAppListPage() {
   const [data, setData] = useState<ResponseList<VersionModel[]>>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<unknown>(null);
-  
+  const [, setLoading] = useState(true);
+  const [, setError] = useState<unknown>(null);
+
   const [searchParams] = useUrlSearchParams<keyof VersionParams>({
     page: '1',
     size: '10',
@@ -62,7 +62,7 @@ export function MobileAppListPage() {
     setLoading(true);
     try {
       const response = await deleteVersion(ids)
-      if(response.status == 200) {
+      if (response.status == 200) {
         fetchData();
       }
       setError(null);
@@ -102,9 +102,9 @@ export function MobileAppListPage() {
         <TableCell>{versionData.version}</TableCell>
         <TableCell>{versionData.type}</TableCell>
         <TableCell action={true}>
-          <ActionButton to={"./detail/"+versionData.id} variant="detail" />
-          <ActionButton to={"./edit/"+versionData.id} variant="edit" />
-          <ActionButton variant="delete" onClick={() => deleteData(versionData.id?.toString() ?? "")}/>
+          <ActionButton to={"./detail/" + versionData.id} variant="detail" />
+          <ActionButton to={"./edit/" + versionData.id} variant="edit" />
+          <ActionButton variant="delete" onClick={() => deleteData(versionData.id?.toString() ?? "")} />
         </TableCell>
       </TableRow>
     );
@@ -134,7 +134,7 @@ export function MobileAppListPage() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.content && data.content.map((item, index)=>{return renderTableItem(item, index)})}
+              {data?.content && data.content.map((item, index) => { return renderTableItem(item, index) })}
             </TableBody>
           </TableParams>
           <PagingParams total={data?.pagination?.total || 0} size={10} />

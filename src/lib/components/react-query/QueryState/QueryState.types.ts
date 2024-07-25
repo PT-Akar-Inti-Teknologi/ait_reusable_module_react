@@ -12,6 +12,6 @@ export interface QueryStateProviderProps<T> {
 }
 
 export interface QueryStateProps<T> extends HTMLAttributes<HTMLDivElement> {
-  hasData: (data?: ResponseList<T[]> | T) => boolean;
+  hasData?: (data?: ResponseList<T[]> | T) => boolean;
   query?: UseQueryResult<ResponseList<T[]> | T | undefined, AxiosError<BaseResponse<Response<any>>>>;
 }

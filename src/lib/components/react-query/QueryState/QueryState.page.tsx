@@ -12,11 +12,11 @@ import { QueryStateContent } from "./QueryStateContent.page";
 import { Theme } from "./QueryStateContent.theme";
 
 function QueryState<T>({
-                           children,
-                           hasData = (_: { content: any[], id: any }) => hasArray(_?.content) || !!_?.id,
-                           query,
-                           ...props
-                       }: Readonly<QueryStateProps<T>>) {
+    children,
+    hasData = (_?: any) => hasArray(_?.content) || !!_?.id,
+    query,
+    ...props
+}: Readonly<QueryStateProps<T>>) {
 
     const [searchParams] = useUrlSearchParams<'search'>();
 
@@ -27,7 +27,7 @@ function QueryState<T>({
 
     if (hasData(query?.data)) {
         return (
-            <QueryStateProvider {...{query}}>
+            <QueryStateProvider {...{ query }}>
                 {dataEl}
             </QueryStateProvider>
         );
@@ -36,7 +36,7 @@ function QueryState<T>({
     if (query?.isFetching || query?.isLoading) {
         return (
             <QueryStateContent {...props}>
-                <LoadingIcon/>
+                <LoadingIcon />
                 <Typography className={twMerge(Theme.description)}>
                     Loading...
                 </Typography>
@@ -59,7 +59,7 @@ function QueryState<T>({
         );
     }
 
-    const params = {...searchParams, page: undefined, limit: undefined};
+    const params = { ...searchParams, page: undefined, limit: undefined };
     if (!hasObjectValues(params)) {
         return (
             <QueryStateContent

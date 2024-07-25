@@ -1,34 +1,34 @@
 import {
-  twMerge
-} from "tailwind-merge";
-import {
   createElement,
   useEffect
 } from "react";
+import {
+  twMerge
+} from "tailwind-merge";
 
 import {
   Divider
 } from "../Divider/Divider.page";
+import {
+  SortAscIcon,
+  SortDescIcon
+} from "./Icons";
+import {
+  useTableContext
+} from "./Table.context";
+import {
+  Theme
+} from "./TableCell.theme";
 import {
   Sort,
   TableCellChildrenProps,
   TableCellProps
 } from "./TableCell.types";
 import {
-  Theme
-} from "./TableCell.theme";
-import {
   displayValue,
   getParamKey,
   getRollingSort
 } from "./TableCell.utils";
-import {
-  useTableContext
-} from "./Table.context";
-import {
-  SortAscIcon,
-  SortDescIcon
-} from "./Icons";
 
 export function TableCell<T>({
   renderValue,
@@ -106,6 +106,7 @@ export function TableCell<T>({
     <>
       {(action) && (
         <Divider
+          variant="solid"
           orientation="vertical"
           className={twMerge(Theme.actionDivider, classNames?.actionDivider)}
         />
