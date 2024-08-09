@@ -1,15 +1,15 @@
 {
-  "name": "ait_reusable_table_react",
+  "name": "ait_reusable_module_react",
   "version": "0.0.30",
   "type": "module",
   "source": "src/lib/components/index.ts",
-  "main": "./dist/ait_reusable_table_react.cjs",
-  "module": "./dist/ait_reusable_table_react.module.js",
-  "unpkg": "./dist/ait_reusable_table_react.umd.js",
+  "main": "./dist/ait_reusable_module_react.cjs",
+  "module": "./dist/ait_reusable_module_react.module.js",
+  "unpkg": "./dist/ait_reusable_module_react.umd.js",
   "exports": {
-    "require": "./dist/ait_reusable_table_react.cjs",
-    "default": "./dist/ait_reusable_table_react.module.js",
-    "import": "./dist/ait_reusable_table_react.module.js"
+    "require": "./dist/ait_reusable_module_react.cjs",
+    "default": "./dist/ait_reusable_module_react.module.js",
+    "import": "./dist/ait_reusable_module_react.module.js"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -59,6 +59,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_table_react.git"
+    "url": "git+https://github.com/PT-Akar-Inti-Teknologi/ait_reusable_module_react.git"
   }
 }
