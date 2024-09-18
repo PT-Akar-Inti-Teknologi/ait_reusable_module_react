@@ -3,10 +3,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { pagingSizeMaster } from "ait-reusable-component-react";
 import { useUrlSearchParams } from "ait-reusable-component-react/hooks";
 import { BaseResponse, Pagination, Response, ResponseList } from "ait-reusable-component-react/models";
-import { AxiosError, AxiosResponse } from "axios";
+import { MutationErrorType, QueryErrorType } from "ait-reusable-component-react/types";
+import { AxiosResponse } from "axios";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { getDetailCMSBanner, getListCMSBanner, saveCMSBanner, URL_BANNER, URL_EXAMPLE } from "./ExampleCMSBanner.service.ts";
+import { getDetailCMSBanner, getListCMSBanner, updateCMSBanner, URL_BANNER, URL_EXAMPLE } from "./ExampleCMSBanner.service.ts";
 import { ExampleCMSBannerModel, ExampleCMSBannerParams } from "./ExampleCMSBanner.types.ts";
 
 
@@ -41,7 +42,7 @@ export function useGetExample() {
 
     return useQuery<
         AxiosResponse<BaseResponse<Pagination<ExampleCMSBannerModel[]>>>,
-        AxiosError<BaseResponse<Response<any>>>,
+        QueryErrorType,
         ResponseList<ExampleCMSBannerModel[]> | undefined
     >({
         queryKey: [URL_EXAMPLE, params],
@@ -66,8 +67,7 @@ export function useGetDetailCMSBanner() {
 
     return useQuery<
         AxiosResponse<BaseResponse<Response<ExampleCMSBannerModel>>>,
-        // AxiosError<BaseResponse<Response<any>>>,
-        any,
+        QueryErrorType,
         ExampleCMSBannerModel | undefined
     >({
         queryKey: [URL_BANNER, params.id],
@@ -77,10 +77,14 @@ export function useGetDetailCMSBanner() {
     });
 }
 
-export function useSaveCMSBanner(): any {
+export function useSaveCMSBanner() {
 
-    return useMutation({
+    return useMutation<
+        AxiosResponse<BaseResponse<Response<ExampleCMSBannerModel>>>,
+        MutationErrorType,
+        any
+    >({
         mutationKey: [URL_BANNER],
-        mutationFn: saveCMSBanner
+        mutationFn: updateCMSBanner,
     });
 }
