@@ -1,9 +1,12 @@
+import { aitTailwindContent } from 'ait-reusable-component-react/utils';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
   content: [
     './index.html',
     "./src/**/*.{js,jsx,ts,tsx}",
+    aitTailwindContent()
   ],
   theme: {
     extend: {

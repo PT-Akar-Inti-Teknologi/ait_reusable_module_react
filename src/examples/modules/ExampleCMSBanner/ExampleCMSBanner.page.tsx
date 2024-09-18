@@ -1,5 +1,3 @@
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {
     ActionButton, Button,
     Content,
@@ -14,11 +12,13 @@ import {
     TableHead,
     TableRow,
     ToggleDarkMode
-} from "~/components";
-import ModalComponent from "~/components/Modal/Modal.page.tsx";
+} from "ait-reusable-component-react";
 import {
     InputSearchParams, PagingParams
-} from "~/components/query-params";
+} from "ait-reusable-component-react/query-params";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ModalComponent from "~/components/Modal/Modal.page.tsx";
 import {
     QueryState,
 } from "~/components/react-query";
@@ -42,14 +42,14 @@ export function ExampleCMSBanner() {
         state.action.setIsModalOpen(true);
     };
 
-    const renderTableItem = ({item, key}: RenderTableRowParams<ExampleCMSBannerModel>) => {
+    const renderTableItem = ({ item, key }: RenderTableRowParams<ExampleCMSBannerModel>) => {
         return (
             <DraggableTableRow identity={key!}>
                 <TableCell>
-                    <HandleDragRow identity={key!}/>
+                    <HandleDragRow identity={key!} />
                 </TableCell>
-                <TableCell value={item.title}/>
-                <TableCell value={item.description} className="break-words"/>
+                <TableCell value={item.title} />
+                <TableCell value={item.description} className="break-words" />
                 <TableCell>
                     {item.is_active ? (
                         <span className="px-2 py-1 text-white bg-green-500 rounded">Active</span>
@@ -57,12 +57,12 @@ export function ExampleCMSBanner() {
                         <span className="px-2 py-1 text-white bg-red-500 rounded">Inactive</span>
                     )}
                 </TableCell>
-                <TableCell value={formatDate(item.updated_at)}/>
-                <TableCell value={formatDate(item.updated_at)}/>
+                <TableCell value={formatDate(item.updated_at)} />
+                <TableCell value={formatDate(item.updated_at)} />
                 <TableCell action={true}>
-                    <ActionButton to={"./detail/" + item.id} variant="detail"/>
-                    <ActionButton to={"./edit/" + item.id} variant="edit"/>
-                    <ActionButton variant="delete" onClick={() => confirmDelete(item.id?.toString() ?? "")}/>
+                    <ActionButton to={"./detail/" + item.id} variant="detail" />
+                    <ActionButton to={"./edit/" + item.id} variant="edit" />
+                    <ActionButton variant="delete" onClick={() => confirmDelete(item.id?.toString() ?? "")} />
                 </TableCell>
             </DraggableTableRow>
         );
@@ -92,11 +92,11 @@ export function ExampleCMSBanner() {
         <Wrapper>
             <Content>
                 <ContentHeader title="CMS Banner">
-                    <ToggleDarkMode/>
+                    <ToggleDarkMode />
                 </ContentHeader>
                 <ContentBody className="px-0">
                     <div className="flex flex-row justify-between">
-                        <InputSearchParams/>
+                        <InputSearchParams />
                         <div className="px-6">
                             <Button to="./add">Add Banner</Button>
                         </div>
@@ -105,7 +105,7 @@ export function ExampleCMSBanner() {
                         <DraggableTable>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell index={true}/>
+                                    <TableCell index={true} />
                                     <TableCell>Title</TableCell>
                                     <TableCell className="w-96">Description</TableCell>
                                     <TableCell>Status</TableCell>
@@ -115,10 +115,10 @@ export function ExampleCMSBanner() {
                                 </TableRow>
                             </TableHead>
                             <DraggableTableBody keyExtractor={(_) => _.id!} onReorder={state.action.handleReOrderDraft}
-                                                renderItem={renderTableItem} data={state.state.draft}/>
+                                renderItem={renderTableItem} data={state.state.draft} />
                         </DraggableTable>
                     </QueryState>
-                    <PagingParams total={state.exampleCMSBanner.data?.pagination?.total || 0} size={10}/>
+                    <PagingParams />
                 </ContentBody>
             </Content>
             {state.state.isDeleting && <div
@@ -132,7 +132,7 @@ export function ExampleCMSBanner() {
                 confirmText="Yes"
                 cancelText="No"
             />
-            <ToastContainer autoClose={5000}/>
+            <ToastContainer autoClose={5000} />
         </Wrapper>
     );
 }
