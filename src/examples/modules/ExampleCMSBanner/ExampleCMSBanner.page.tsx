@@ -16,12 +16,12 @@ import {
 import {
     InputSearchParams, PagingParams
 } from "ait-reusable-component-react/query-params";
+import {
+    QueryState,
+} from "ait-reusable-component-react/react-query";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalComponent from "~/components/Modal/Modal.page.tsx";
-import {
-    QueryState,
-} from "~/components/react-query";
 import { ResponseList } from "~/models";
 import {
     Wrapper

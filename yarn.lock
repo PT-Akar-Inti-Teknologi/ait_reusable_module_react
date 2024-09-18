@@ -1883,10 +1883,10 @@ acorn@^8.8.2, acorn@^8.9.0:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.11.3.tgz"
   integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
 
-ait-reusable-component-react@^0.1.66:
-  version "0.1.66"
-  resolved "https://registry.yarnpkg.com/ait-reusable-component-react/-/ait-reusable-component-react-0.1.66.tgz#a299ef7a3cee281b30f355af9105688908ff53e6"
-  integrity sha512-wODOFoBR8HvV4OXA54B6Msk/HBQNLPySV6g/Zu2VXNzMd687MyI9jN3Kf4Nu1DV23X3oAEaelvJS9rJkKYm6Rg==
+ait-reusable-component-react@^0.1.68:
+  version "0.1.68"
+  resolved "https://registry.yarnpkg.com/ait-reusable-component-react/-/ait-reusable-component-react-0.1.68.tgz#aa1e866f08a97b2cadec8cab4251eb658ff8aecf"
+  integrity sha512-YkjdVvcB6OU3iz7c6PWPE+Ntc6FHOhzrmw8CU/CckeQAx0smzVvBmnszypsixSC23wdQcgxiBA/PybZPrO3jVw==
   dependencies:
     "@dnd-kit/core" "^6.1.0"
     "@dnd-kit/modifiers" "^7.0.0"

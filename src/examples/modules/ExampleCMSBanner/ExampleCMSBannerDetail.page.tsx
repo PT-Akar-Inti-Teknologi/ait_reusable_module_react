@@ -1,71 +1,71 @@
 import {
-    Wrapper
-} from "src/examples/components";
-import {
     Button,
     Content,
     ContentAction,
-    ContentHeader, Label,
-} from "~/components";
-import { useExampleCMSBannerHook } from "./ExampleCMSBanner.hooks";
+    ContentHeader,
+    LabelItem,
+    Thumbnail
+} from "ait-reusable-component-react";
+import {
+    QueryState
+} from "ait-reusable-component-react/react-query";
+import {
+    Wrapper
+} from "src/examples/components";
+import {
+    useExampleCMSBannerDetailHook
+} from "./ExampleCMSBannerDetail.hooks";
+import {
+    formatDate
+} from "./ExampleCMSBannerDetail.utils";
 
 export function ExampleCMSBannerDetailPage() {
-    const state = useExampleCMSBannerHook();
-    function formatterLabel(value: string) {
-        return value
-            .split('_')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-    }
 
-    function formatDate(isoString: string): string {
-        const date = new Date(isoString);
-
-        const year = date.getFullYear();
-        // getMonth() returns 0-11; adding 1 to match the human-readable format and padStart to add leading zero if needed
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        const hour = date.getHours().toString().padStart(2, '0');
-        const minute = date.getMinutes().toString().padStart(2, '0');
-
-        // Example format: "2024-06-11"
-        return `${year}/${month}/${day}  ${hour}:${minute}`;
-    }
-
-    function renderLabel(key: string, value: any) {
-        if (key === 'image_file' || key === 'thumbnail_file') {
-            return <img src={value} alt="image" className="w-2/3 aspect-video"/>;
-        } else if (key === 'created_at' || key === 'updated_at') {
-            return <Label className="col-span-2">{formatDate(value)}</Label>;
-        } else if (key === 'is_active') {
-            return <Label className="col-span-2">
-                {value ? (
-                    <span className="px-2 py-1 text-white bg-green-500 rounded">Active</span>
-                ) : (
-                    <span className="px-2 py-1 text-white bg-red-500 rounded">Inactive</span>
-                )}
-            </Label>;
-        } else {
-            return <Label className="col-span-2">{value}</Label>;
-        }
-    }
+    const {
+        banner
+    } = useExampleCMSBannerDetailHook();
 
     return (
         <Wrapper>
             <Content>
-                <ContentHeader title="Detail Banner"/>
-                <div className="px-6">
-                    {/* loop the label item */}
-                    {Object.entries(state.state.detail).map(([key, value]) => (
-                        <div className="grid grid-cols-3 my-2">
-                            <Label>{key === 'is_active' ? "Status" : formatterLabel(key)}</Label>
-                            {renderLabel(key, value)}
-                        </div>
-                    ))}
-                </div>
+                <ContentHeader title="Detail Banner" />
+                <QueryState query={banner}>
+                    <div className="px-8">
+                        <LabelItem label="ID" value={banner.data?.id} />
+                        <LabelItem label="Title" value={banner.data?.title} />
+                        <LabelItem label="Description" value={banner.data?.description} />
+                        <LabelItem label="Index" value={banner.data?.index.toString()} />
+                        <LabelItem label="Deeplink" value={banner.data?.deeplink} />
+                        <LabelItem
+                            label="Image File"
+                            renderValue={(_) => <Thumbnail src={_} alt={banner.data?.title} />}
+                            value={banner.data?.image_file}
+                        />
+                        <LabelItem
+                            label="Thumbnail File"
+                            renderValue={(_) => <Thumbnail src={_} alt={banner.data?.title} />}
+                            value={banner.data?.thumbnail_file}
+                        />
+                        <LabelItem
+                            label="Created At"
+                            renderValue={formatDate}
+                            value={banner.data?.created_at}
+                        />
+                        <LabelItem
+                            label="Updated At"
+                            renderValue={formatDate}
+                            value={banner.data?.updated_at}
+                        />
+                        <LabelItem
+                            label="Status"
+                            renderValue={(_) => _ === "true" ? <span className="px-2 py-1 text-white bg-green-500 rounded">Active</span> : <span className="px-2 py-1 text-white bg-red-500 rounded">Inactive</span>}
+                            className="border-0"
+                            value={banner.data?.is_active.toString()}
+                        />
+                    </div>
+                </QueryState>
                 <ContentAction>
-                    <Button></Button>
-                    {/*<Button to={"../edit/"+platform+"/"+version}>Edit</Button>*/}
+                    <Button>Back</Button>
                 </ContentAction>
             </Content>
         </Wrapper>
