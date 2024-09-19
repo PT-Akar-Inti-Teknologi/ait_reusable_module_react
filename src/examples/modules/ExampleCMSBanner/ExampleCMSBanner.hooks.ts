@@ -10,7 +10,7 @@ export function useExampleCMSBannerHook() {
     const [isDeleting, setIsDeleting] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const {id} = useParams();
+    const { id } = useParams();
     const [detail, setDetail] = useState<{ [key: string]: any }>({});
 
     const exampleCMSBanner = useGetExample();
@@ -47,7 +47,7 @@ export function useExampleCMSBannerHook() {
     };
 
     const handleReOrderDraft = (data: ExampleCMSBannerModel[]) => {
-        const draft = data.map((_) => ({..._, id: _.id}));
+        const draft = data.map((_) => ({ ..._, id: _.id }));
         setDraft(draft);
         const result = generateReorderIndex(data);
         handleReorderIndex(result);

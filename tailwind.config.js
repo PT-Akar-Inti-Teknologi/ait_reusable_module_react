@@ -1,9 +1,12 @@
+import { aitTailwindContent } from 'ait-reusable-component-react/utils';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
   content: [
     './index.html',
     "./src/**/*.{js,jsx,ts,tsx}",
+    aitTailwindContent()
   ],
   theme: {
     extend: {
@@ -159,7 +162,31 @@ export default {
           900: '#002D76',
           //end v2 color base template
         }
-      }
+      },
+      keyframes: {
+        "modal-open": {
+          "0%": { transform: "translateY(25%)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 100 },
+        },
+        "modal-close": {
+          "0%": { transform: "translateY(0)", opacity: 100 },
+          "100%": { transform: "translateY(25%)", opacity: 0 },
+        },
+        "opacity-to-full": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 100 },
+        },
+        "opacity-to-null": {
+          "0%": { opacity: 100 },
+          "100%": { opacity: 0 },
+        },
+      },
+      animation: {
+        "modal-open": "modal-open 0.3s ease-out forwards",
+        "modal-close": "modal-close 0.3s ease-out forwards",
+        "opacity-to-full": "opacity-to-full 0.3s ease-out forwards",
+        "opacity-to-null": "opacity-to-null 0.3s ease-out forwards",
+      },
     },
   },
   plugins: [
