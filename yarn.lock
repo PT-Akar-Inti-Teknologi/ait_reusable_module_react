@@ -1883,10 +1883,10 @@ acorn@^8.8.2, acorn@^8.9.0:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.11.3.tgz"
   integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
 
-ait-reusable-component-react@^0.1.68:
-  version "0.1.68"
-  resolved "https://registry.yarnpkg.com/ait-reusable-component-react/-/ait-reusable-component-react-0.1.68.tgz#aa1e866f08a97b2cadec8cab4251eb658ff8aecf"
-  integrity sha512-YkjdVvcB6OU3iz7c6PWPE+Ntc6FHOhzrmw8CU/CckeQAx0smzVvBmnszypsixSC23wdQcgxiBA/PybZPrO3jVw==
+ait-reusable-component-react@^0.1.71:
+  version "0.1.71"
+  resolved "https://registry.yarnpkg.com/ait-reusable-component-react/-/ait-reusable-component-react-0.1.71.tgz#e1dfe7fb20c456df4c1a74b6cf7626bf046847bf"
+  integrity sha512-AFf/zQCd85Cq2WPpRfrjQYy5wO81Q4M1u4AQ1MXc7O9WoG0ZxcxpGuJfZ2kb5Px6oQO0X9v3KWMJ7Fn7vXmeqQ==
   dependencies:
     "@dnd-kit/core" "^6.1.0"
     "@dnd-kit/modifiers" "^7.0.0"
@@ -4616,7 +4616,7 @@ react-select@^5.8.0:
 
 react-toastify@^10.0.5:
   version "10.0.5"
-  resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-10.0.5.tgz"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-10.0.5.tgz#6b8f8386060c5c856239f3036d1e76874ce3bd1e"
   integrity sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==
   dependencies:
     clsx "^2.1.0"
