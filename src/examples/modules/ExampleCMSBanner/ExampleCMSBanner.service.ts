@@ -8,8 +8,6 @@ import {
   ExampleCMSBannerModel,
   ExampleCMSBannerParams,
   reorderCMSBannerPayload,
-  updateCMSBannerPayload,
-  uploadCMSBannerPayload,
 } from "./ExampleCMSBanner.types";
 
 export const URL_EXAMPLE = 'https://ait-experiment.sandbait.work/api';
@@ -31,16 +29,17 @@ export function downloadCMSBannerThumbnail(params: ExampleCMSBannerParams, signa
   return axios.get<BaseResponse<Pagination<ExampleCMSBannerModel[]>>>(URL_DOWNLOAD_THUMBNAIL_BANNER, { params, signal });
 }
 
-export const uploadCMSBanner = (payload?: uploadCMSBannerPayload) => {
-  return axios.post<BaseResponse<Response<ExampleCMSBannerModel>>>(URL_BANNER, payload, { headers: { 'Content-Type': 'multipart/form-data' } })
+export const uploadCMSBanner = (payload?: FormData) => {
+  return axios.post<BaseResponse<Response<ExampleCMSBannerModel>>>(URL_BANNER, payload)
 }
 
-export const updateCMSBanner = (payload?: updateCMSBannerPayload) => {
+export const updateCMSBanner = (payload?: FormData) => {
   return axios.put<BaseResponse<Response<ExampleCMSBannerModel>>>(URL_BANNER, payload)
 }
 
-export function saveCMSBanner(payload?: any) {
-  return !payload?.id ? uploadCMSBanner(payload) : updateCMSBanner(payload);
+export function saveCMSBanner(payload?: FormData) {
+  const isEdit = !!payload?.get("id");
+  return isEdit ? updateCMSBanner(payload) : uploadCMSBanner(payload);
 }
 
 export const deleteCMSBanner = (id?: string) => {
