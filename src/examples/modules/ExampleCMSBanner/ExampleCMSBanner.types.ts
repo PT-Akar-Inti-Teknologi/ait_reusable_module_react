@@ -19,24 +19,6 @@ export interface ExampleCMSBannerModel {
     updated_at: string;
 }
 
-export interface uploadCMSBannerPayload {
-    file: File;
-    title: string;
-    description: string;
-    deeplink: string;
-    index: string;
-    is_active: boolean;
-}
-
-export interface updateCMSBannerPayload {
-    id: string;
-    file: string;
-    title: string;
-    description: string;
-    deeplink: string;
-    index: string;
-}
-
 export interface reorderCMSBannerPayload {
     id: string;
     index: string;

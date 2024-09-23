@@ -7,7 +7,7 @@ import { MutationErrorType, QueryErrorType } from "ait-reusable-component-react/
 import { AxiosResponse } from "axios";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { getDetailCMSBanner, getListCMSBanner, updateCMSBanner, URL_BANNER, URL_EXAMPLE } from "./ExampleCMSBanner.service.ts";
+import { getDetailCMSBanner, getListCMSBanner, saveCMSBanner, URL_BANNER, URL_EXAMPLE } from "./ExampleCMSBanner.service.ts";
 import { ExampleCMSBannerModel, ExampleCMSBannerParams } from "./ExampleCMSBanner.types.ts";
 
 
@@ -85,6 +85,6 @@ export function useSaveCMSBanner() {
         any
     >({
         mutationKey: [URL_BANNER],
-        mutationFn: updateCMSBanner,
+        mutationFn: saveCMSBanner,
     });
 }
