@@ -118,7 +118,7 @@ export function ExampleCMSBanner() {
                                 renderItem={renderTableItem} data={state.state.draft} />
                         </DraggableTable>
                     </QueryState>
-                    <PagingParams />
+                    <PagingParams total={state.exampleCMSBanner.data?.pagination?.total_pages} />
                 </ContentBody>
             </Content>
             {state.state.isDeleting && <div
