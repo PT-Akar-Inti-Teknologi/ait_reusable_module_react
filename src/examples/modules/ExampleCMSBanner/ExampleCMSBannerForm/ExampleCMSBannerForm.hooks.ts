@@ -5,12 +5,14 @@ import {
   useGetDetailCMSBanner,
   useSaveCMSBanner,
 } from "../ExampleCMSBanner.providers.ts";
+import { useState } from "react";
 
 export function useCMSBannerFormHook() {
   const bannerMutation = useSaveCMSBanner();
   const detailBanner = useGetDetailCMSBanner();
   const navigate = useNavigate();
   const form = useForm();
+  const [isModalDirtyForm, setIsModalDirtyForm] = useState(false);
 
   const handleSubmit = form.handleSubmit(
     async (payload) => {
@@ -34,7 +36,7 @@ export function useCMSBannerFormHook() {
         } else {
           notify("Data berhasil diupload", "success");
         }
-        navigate(-1);
+        handleNavigateList();
       } catch (error) {
         if (isEdit) {
           notify("Data gagal diedit", "error");
@@ -48,12 +50,31 @@ export function useCMSBannerFormHook() {
     }
   );
 
+  const handleCancel = () => {
+    const dirtyFields = form.control._formState?.dirtyFields;
+    const hasDirtyFields = Object.values(dirtyFields).some(value => value === true);
+    
+    if (hasDirtyFields) {
+      setIsModalDirtyForm(true)
+    } else {
+      handleNavigateList();
+    }
+  };
+
+  const handleNavigateList = () => {
+    navigate(-1);
+  }
+
   return {
     bannerMutation,
     detailBanner,
     form,
+    isModalDirtyForm,
     action: {
       handleSubmit,
+      handleCancel,
+      setIsModalDirtyForm,
+      handleNavigateList
     },
   };
 }

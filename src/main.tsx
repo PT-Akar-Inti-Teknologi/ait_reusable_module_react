@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './index.css'
 import router from './router.tsx'
+import ToastProvider from '~/components/Toast/ToastProvider.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +39,8 @@ function Main() {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Main />
+    <ToastProvider>
+      <Main />
+    </ToastProvider>
   </React.StrictMode>,
 );

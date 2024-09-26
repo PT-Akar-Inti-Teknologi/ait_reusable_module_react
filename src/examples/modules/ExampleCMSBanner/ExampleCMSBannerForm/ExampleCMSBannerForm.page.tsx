@@ -14,9 +14,6 @@ import {
     InputTextField
 } from "ait-reusable-component-react/hook-form";
 import {
-    ToastContainer
-} from "react-toastify";
-import {
     Wrapper
 } from "src/examples/components";
 import {
@@ -25,6 +22,7 @@ import {
 import {
     CMSBannerFormProps
 } from "./ExampleCMSBannerForm.types";
+import ModalComponent from "~/components/Modal/Modal.page";
 
 export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
 
@@ -32,7 +30,8 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
         bannerMutation,
         detailBanner,
         action,
-        form
+        form,
+        isModalDirtyForm,
     } = useCMSBannerFormHook();
 
     return (
@@ -88,16 +87,26 @@ export function ExampleCMSBannerFormPage(props: Readonly<CMSBannerFormProps>) {
                             </ControlLabel>
                         </ContentBody>
                         <ContentAction>
-                            <Button />
+                            <Button
+                                onClick={action.handleCancel}
+                            />
                             <Button
                                 loading={bannerMutation.isPending}
                                 onClick={action.handleSubmit}
                             />
                         </ContentAction>
-                        <ToastContainer autoClose={5000} />
                     </>
                 </HookFormProvider>
             </Content>
+            <ModalComponent
+                isOpen={isModalDirtyForm}
+                onRequestClose={() => action.setIsModalDirtyForm(false)}
+                onConfirm={action.handleNavigateList}
+                title="Unsaved Changes"
+                message="Are you sure you want to leave without saving? All changes will be lost."
+                confirmText="Yes"
+                cancelText="No"
+            />
         </Wrapper>
     );
 }
