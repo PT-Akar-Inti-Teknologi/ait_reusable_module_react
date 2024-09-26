@@ -19,8 +19,6 @@ import {
 import {
     QueryState,
 } from "ait-reusable-component-react/react-query";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import ModalComponent from "~/components/Modal/Modal.page.tsx";
 import { ResponseList } from "~/models";
 import {
@@ -132,7 +130,6 @@ export function ExampleCMSBanner() {
                 confirmText="Yes"
                 cancelText="No"
             />
-            <ToastContainer autoClose={5000} />
         </Wrapper>
     );
 }
